@@ -1,0 +1,32 @@
+@use '../mixin/breakpoint' as *;
+
+//
+//====>> JavaScriptによるスクロールアニメーション <<====
+
+//・JavaScriptによって操作するスクロールアニメーション関連のスタイル
+
+//
+
+//==========フェードイン==========*/
+.js-scroll-up {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(50px);
+  transition: all 1s;
+}
+
+// .scroll-up + .scroll-up {
+//   transition-delay: 0.3s;
+// }
+// .scroll-up + .scroll-up + .scroll-up {
+//   transition-delay: 0.6s;
+// }
+// .scroll-up + .scroll-up + .scroll-up + .scroll-up {
+//   transition-delay: 0.9s;
+// }
+.js-scroll-up.is-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+}
+

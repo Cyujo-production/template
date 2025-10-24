@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+  <?php
+  $path = './';  //追加（カレントディレクトリを表す ./ ）
+  $title = 'サンプルページ';
+  $description = 'ディスクリプション';
+  $is_home = true; //トップページの判定用の変数 true false
+  include_once($path . 'assets/inc/head.php');
+  ?>
+</head>
+<body>
+  <?php include_once($path . 'assets/inc/body.php'); ?>
+  <div class="l-wrapper">
+    <?php include_once($path . 'assets/inc/header.php'); ?>
+    <main>
+      <!--パンくずリスト-->
+      <div class="c-breadcrumb pt-30">
+        <div class="l-container">
+          <p>構造化マークアップ（schema）</p>
+          <div class="c-breadcrumb_list mb-30">
+            <ol itemscope="" itemtype="https://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">TOP</span></a>
+                <meta itemprop="position" content="1">
+              </li>
+              <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                <span itemprop="name">お試し体験</span>
+                <meta itemprop="position" content="2">
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div><!--.c-pankuzu-->
+      <section id="p-sample_about" class="p-sample_about l-wrap mb-30">
+        <div class="l-container">
+          <!--コンポーネント：基本見出し-->
+          <h2 class="c-title_l mb-30">コンポーネントサンプル</h2>
+          <ul class="c-list_plain mb-30">
+            <li>サンプルページです</li>
+            <li>サンプルページです</li>
+          </ul>
+          <!--コンポーネント：基本2つカラム　1：1-->
+          <div class="c-unit mb-50">
+            <div>
+              <p>ユニットサンプル（.c-unit）です。左右のボックスが同じサイズで伸縮します。</p>
+            </div>
+            <figure><img src="assets/img/common/sample.jpg" alt="サンプルイメージ" width="640" height="420" decoding="async"></figure>
+          </div>
+          <div class="c-unit is-reverse mb-50">
+            <div>
+              <p>.is-reverseをつけることで反転可能</p>
+            </div>
+            <figure><img src="assets/img/common/sample.jpg" alt="サンプルイメージ" width="640" height="420" decoding="async"></figure>
+          </div>
+          <div class="c-media mb-50">
+            <figure class="c-media_image"><img src="assets/img/common/sample.jpg" alt="サンプルイメージ" width="640" height="420" decoding="async"></figure>
+            <div class="c-media_content">
+              <h3 class="c-media_content_title">見出しも設定あり</h3>
+              <p class="c-media_content_text">画像とテキストセット（.c-media）サンプルです。画像のサイズは固定になり伸縮しません。</p>
+            </div>
+          </div>
+          <div class="c-media is-reverse mb-50">
+            <figure class="c-media_image"><img src="assets/img/common/sample.jpg" alt="サンプルイメージ" width="640" height="420" decoding="async"></figure>
+            <div class="c-media_content">
+              <p class="c-media_content_text">見出しなしも可能。<br>.is-reverseをつけることで反転可能</p>
+            </div>
+          </div>
+
+          <!--コンポーネント：基本テーブル-->
+          <h3 class="c-title_m mb-10">基本のTABLE(.c-table_plain)</h3>
+          <table class="c-table_plain mb-40">
+            <tbody>
+              <tr>
+                <th>表見出し</th>
+                <td>表本文表本文表本文表本文表本文表本文</td>
+              </tr>
+              <tr>
+                <th>表見出し</th>
+                <td>表本文表本文表本文表本文表本文表本文</td>
+              </tr>
+              <tr>
+                <th>表見出し</th>
+                <td>表本文表本文表本文表本文表本文表本文</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="c-btn_wrap pt-40">
+            <a href="#link" class="c-link_btn">詳しくはこちら</a>
+          </div>
+          <div class="is-flex">
+            <!--コンポーネント：デフォルトマークありリスト-->
+            <ul class="c-list_plain">
+              <li>UL基本リストスタイル</li>
+              <li>UL基本リストスタイル</li>
+              <li>UL基本リストスタイル</li>
+              <li>UL基本リストスタイル</li>
+            </ul>
+            <!--コンポーネント：デフォルトマークありリスト-->
+            <ol class="c-list_plain">
+              <li>OL基本リストスタイル</li>
+              <li>OL基本リストスタイル</li>
+              <li>OL基本リストスタイル</li>
+              <li>OL基本リストスタイル</li>
+            </ol>
+          </div>
+        </div><!--.l-container-->
+      </section><!--#p-sample_about-->
+      <section id="p-sample_news" class="p-sample_news mt-30 mb-50">
+        <div class="l-container_short">
+          <!--コンポーネント：タブ切り替え（jsあり）-->
+          <div class="c-tab-panel">
+            <!--タブ-->
+            <ul class="c-tab-panel_tabs">
+              <li class="js-tab c-tab-panel_tab">NEWS</li>
+              <li class="js-tab c-tab-panel_tab is-active">BLOG</li>
+              <li class="js-tab c-tab-panel_tab">その他</li>
+            </ul>
+            <!--タブを切り替えて表示するコンテンツ-->
+            <div class="c-tab-panel_panels">
+              <div class="c-tab-panel_panel">
+                <ul class="c-news_list">
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">お知らせ</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">イベント</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">その他</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">お知らせ</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">イベント</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                </ul>
+                <div class="c-btn_wrap pt-30"><a href="#" class="c-link_btn mb-30">NEWS一覧へ</a></div>
+              </div><!--c-tab-panel_panel-->
+              <div class="c-tab-panel_panel is-active">
+                <ul class="c-news_list">
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">blog</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">blog</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">blog</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">blog</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">blog</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                </ul>
+                <div class="c-btn_wrap pt-30"><a href="#" class="c-link_btn mb-30">BLOG一覧へ</a></div>
+              </div><!--c-tab-panel_panel-->
+              <div class="c-tab-panel_panel">
+                <ul class="c-news_list">
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">その他</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">その他</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">その他</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                  <li><a href="#"><time data-time="2024-04-08">2024/04/08</time><span class="c-news_cat">その他</span>
+                      <p>記事タイトル</p>
+                    </a></li>
+                </ul>
+                <div class="c-btn_wrap"><a href="#" class="c-link_btn mb-30">その他一覧へ</a></div>
+              </div><!--c-tab-panel_panel-->
+            </div><!--.c-tab-panel_panels-->
+          </div><!--c-tab-panel-->
+        </div><!--l-container-->
+      </section><!--.p-sample_news-->
+      <!--コンポーネント：アコーディオン（jsあり）-->
+      <section id="p-sample_faq" class="p-sample_faq  mb-30" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="l-container">
+          <h2 class="c-title_s">アコーディオン</h2>
+          <div class="c-accordion_wrap"  itemscope itemtype="https://schema.org/FAQPage">
+            <details class="c-accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" open="true">
+              <summary class="js-accordion_label c-accordion_label" itemprop="name"><span>どのようにして使用できますか？</span></summary>
+              <div class="c-accordion_box" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <div class="l-inner">
+                  <p itemprop="text">当サイトの予約フォームよりご希望の日時を選択して送信してください。折り返し確認のメールをお送りします。</p>
+                </div>
+              </div>
+            </details>
+            <details class="c-accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="js-accordion_label c-accordion_label" itemprop="name"><span>どのようにして使用できますか？</span></summary>
+              <div class="c-accordion_box" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <div class="l-inner">
+                  <p itemprop="text">当サイトの予約フォームよりご希望の日時を選択して送信してください。折り返し確認のメールをお送りします。</p>
+                </div>
+              </div>
+            </details>
+            <details class="c-accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="js-accordion_label c-accordion_label" itemprop="name"><span>どのようにして使用できますか？</span></summary>
+              <div class="c-accordion_box" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <div class="l-inner">
+                  <p itemprop="text">当サイトの予約フォームよりご希望の日時を選択して送信してください。折り返し確認のメールをお送りします。</p>
+                </div>
+              </div>
+            </details>
+            <details class="c-accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="js-accordion_label c-accordion_label" itemprop="name"><span>どのようにして使用できますか？</span></summary>
+              <div class="c-accordion_box" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <div class="l-inner">
+                  <p itemprop="text">当サイトの予約フォームよりご希望の日時を選択して送信してください。折り返し確認のメールをお送りします。</p>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+          <p class="js-scroll-up">フェードアップアニメーション。※サイトで使用しないJSはコメントアウトか、削除しましょう</p>
+        </div><!--.l-container-->
+      </section><!--#p-sample_faq-->
+      <section id="p-sample_card" class="p-sample_card pt-50">
+        <div class="l-container">
+          <h2 class="c-title_m mb-30">カードタイプコンポーネント(grid)</h2>
+          <div class="c-card-grid c-card_8">
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">グリッド説明</h3>
+              <p class="c-card-grid_text">grid-itemにはsub-gridを設定しており、デフォルトでgrid-row: span 4;が入っています。コンテンツの数によって上書き設定してください。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">グリッド説明2</h3>
+              <p class="c-card-grid_text">sub-gridを設定することにより、見出しやテキストの高さがカード間で揃えることができますが表示が崩れたりする場合もあるので、調整が必要です。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">.c-card-flex</h3>
+              <p class="c-card-grid_text">flexタイプのカードもあります。sub-gridや段落が落ちた時の横幅可変が必要ないときは.c-card-flexを利用することができます。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">カードタイトル</h3>
+              <p class="c-card-grid_text">カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">カードタイトル</h3>
+              <p class="c-card-grid_text">カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">カードタイトル</h3>
+              <p class="c-card-grid_text">カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">カードタイトル</h3>
+              <p class="c-card-grid_text">カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">カードタイトル</h3>
+              <p class="c-card-grid_text">カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。</p>
+            </div><!--.c-card-grid_item-->
+            <div class="c-card-grid_item">
+              <figure class="c-card-grid_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-grid_title">カードタイトル</h3>
+              <p class="c-card-grid_text">カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。カードテキストが入ります。</p>
+            </div><!--.c-card-grid_item-->
+          </div><!--.c-card_grid-->
+
+          <div class="c-card-flex c-card_3">
+            <div class="c-card-flex_item">
+              <figure class="c-card-flex_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-flex_title">.c-card-flex</h3>
+              <p class="c-card-flex_text">flexタイプのカードもあります。sub-gridや段落が落ちた時の横幅可変が必要ないときは.c-card-flexを利用することができます。</p>
+            </div>
+            <div class="c-card-flex_item">
+              <figure class="c-card-flex_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-flex_title">.c-card-flex</h3>
+              <p class="c-card-flex_text">flexタイプのカードもあります。sub-gridや段落が落ちた時の横幅可変が必要ないときは.c-card-flexを利用することができます。</p>
+            </div>
+            <div class="c-card-flex_item">
+              <figure class="c-card-flex_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-flex_title">.c-card-flex</h3>
+              <p class="c-card-flex_text">flexタイプのカードもあります。sub-gridや段落が落ちた時の横幅可変が必要ないときは.c-card-flexを利用することができます。</p>
+            </div>
+            <div class="c-card-flex_item">
+              <figure class="c-card-flex_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-flex_title">.c-card-flex</h3>
+              <p class="c-card-flex_text">flexタイプのカードもあります。sub-gridや段落が落ちた時の横幅可変が必要ないときは.c-card-flexを利用することができます。</p>
+            </div>
+            <div class="c-card-flex_item">
+              <figure class="c-card-flex_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-flex_title">.c-card-flex</h3>
+              <p class="c-card-flex_text">flexタイプのカードもあります。sub-gridや段落が落ちた時の横幅可変が必要ないときは.c-card-flexを利用することができます。</p>
+            </div>
+            <div class="c-card-flex_item">
+              <figure class="c-card-flex_image"><img src="assets/img/common/sample.jpg" alt="sampleイメージ" width="320" height="210" decoding=“async”></figure>
+              <h3 class="c-card-flex_title">.c-card-flex</h3>
+              <p class="c-card-flex_text">flexタイプのカードもあります。sub-gridや段落が落ちた時の横幅可変が必要ないときは.c-card-flexを利用することができます。</p>
+            </div>
+          </div>
+          <!--.c-card_flex END-->
+        </div>
+        <!--.l-container END-->
+      </section>
+      <section id="p-sample_form" class="p-sample_form pt-50">
+        <div class="l-container_short">
+          <h2 class="c-title_m mb-30">フォームの基本形</h2>
+          <div class="c-form">
+            <ul class="c-form_step">
+              <li class="c-form_step_item is-active">
+                <div class="c-form_step_item_number">
+                  <span>01</span>
+                </div>
+                <span class="c-form_step_item_title">入力</span>
+              </li>
+              <li class="c-form_step_item">
+                <div class="c-form_step_item_number">
+                  <span>02</span>
+                </div>
+                <span class="c-form_step_item_title">確認</span>
+              </li>
+              <li class="c-form_step_item">
+                <div class="c-form_step_item_number">
+                  <span>03</span>
+                </div>
+                <span class="c-form_step_item_title">完了</span>
+              </li>
+            </ul>
+            <form id="mailformpro" action="assets/cgi/mailformpro/mailformpro.cgi" method="POST">
+              <div class="c-form_row">
+                <label class="c-form_label">会社名 <span>任意</span></label>
+                <div class="c-form_flex">
+                  <input type="text" name="会社名">
+                </div>
+                <div id="errormsg_会社名" class="mfp_err"></div>
+              </div>
+              <div class="c-form_row">
+                <label class="c-form_label">電話番号 <span class="is-required">必須</span></label>
+                <div class="c-form_flex">
+                  <input class="js-half-conversion" type="text" name="電話番号" required="required" data-charcheck="digit" maxlength="11">
+                </div>
+                <div id="errormsg_電話番号" class="mfp_err"></div>
+              </div>
+              <div class="c-form_row">
+                <label class="c-form_label">メールアドレス <span class="is-required">必須</span></label>
+                <div class="c-form_flex">
+                  <input class="js-half-conversion" type="email" name="メールアドレス" required="required">
+                </div>
+                <div id="errormsg_メールアドレス" class="mfp_err"></div>
+              </div>
+              <div class="c-form_row">
+                <label class="c-form_label">
+                  ご担当者様氏名 <span class="is-required">必須</span></label>
+                <div class="c-form_flex">
+                  <input type="hidden" name="ご担当者様氏名" data-join="姓+ +名" />
+                  <input class="c-form_input_m" type="text" name="姓" placeholder="姓" required="required">
+                  <input class="c-form_input_m" type="text" name="名" placeholder="名" required="required">
+                </div>
+                <div id="errormsg_姓" class="mfp_err"></div>
+                <div id="errormsg_名" class="mfp_err"></div>
+              </div>
+              <div class="c-form_row">
+                <label class="c-form_label">ご要望 <span class="is-required">必須</span></label>
+                <div class="c-form_flex">
+                  <label class="c-form_radio-item"><input type="radio" name="ご要望" required="required" value="WEB診断のご相談"> WEB診断のご相談</label>
+                  <label class="c-form_radio-item"><input type="radio" name="ご要望" required="required" value="その他ご相談" data-toggle="other" data-toggle-hide="1"> その他ご相談</label>
+                </div>
+                <div id="errormsg_ご要望" class="mfp_err"></div>
+                <div id="other" class="c-form_flex">
+                  <span class="c-form_label">※その他ご相談の場合、具体的なご要望をご記載ください</span>
+                  <textarea name="その他ご相談内容" cols="50" rows="5" required="required"></textarea>
+                </div>
+                <div id="errormsg_その他ご相談内容" class="mfp_err"></div>
+              </div>
+              <div class="c-form_row">
+                <label class="c-form_label">問い合わせ種別 <span class="is-required">必須</span></label>
+                <div class="c-form_flex">
+                  <label class="c-form_check-item"><input type="checkbox" name="問い合わせ種別" required="required" data-min="1" value="WEB診断のご相談"> WEB診断のご相談</label>
+                  <label class="c-form_check-item"><input type="checkbox" name="問い合わせ種別" required="required" value="その他ご相談" data-toggle="other" data-toggle-hide="1"> その他ご相談</label>
+                </div>
+                <div id="errormsg_ご要望" class="mfp_err"></div>
+              </div>
+              <div class="c-form_row">
+                <label class="c-form_label">比べたい競合サイトがあれば入力してください <span>任意</span></label>
+                <div class="c-form_flex">
+                  <input type="text" name="比べたい競合サイト">
+                </div>
+                <div id="errormsg_比べたい競合サイト" class="mfp_err"></div>
+              </div>
+              <div class="c-form_privacy">
+                <a class="c-form_privacy_link" href="https://cyujo.com/privacypolicy.html" target="_blank">個人情報の取扱いについて</a>
+                <span class="c-form_privacy_consent">
+                  <label>
+                    <input type="checkbox" name="個人情報の取扱いについて" value="同意します" required="required" data-post-disable="1"><span class="mwform-checkbox-field-text">同意します</span>
+                  </label>
+                </span>
+                <div id="errormsg_個人情報の取扱いについて" class="mfp_err"></div>
+              </div>
+              <div class="c-btn_wrap">
+                <input class="c-link_btn contact__submit" type="submit" value="入力内容の確認">
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--.l-container END-->
+      </section>
+      <div class="c-pagination">
+        <a class="c-pagination_first" href="#">最初へ</a>
+        <a class="c-pagination_prev" href="#">前へ</a>
+        <span class="is-current">1</span>
+        <a class="c-pagination_page" href="#">2</a>
+        <a class="c-pagination_page" href="#">3</a>
+        <a class="c-pagination_next" href="#">次へ</a>
+        <a class="c-pagination_last" href="#">最後へ</a>
+      </div>
+      <div class="c-pagination_adjacent">
+        <a class="c-pagination_prev" href="#">前へ</a>
+        <a class="c-pagination_back" href="#">一覧へ</a>
+        <a class="c-pagination_next" href="#">次へ</a>
+      </div>
+    </main>
+    <?php include_once($path . '/assets/inc/footer.php'); ?>
+  </div>
+  <!--.l-wrapper END-->
+</body>
+
+</html>

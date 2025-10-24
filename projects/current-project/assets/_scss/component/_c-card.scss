@@ -1,0 +1,273 @@
+@use '../mixin/breakpoint' as *;
+
+//
+//====>> カードコンポーネント <<====
+
+//・グリッドカード、フレックスカード
+//・ブロックレイアウト
+
+//
+
+//		相対幅ボックス
+//-----------------------------------------------------*/
+
+.c-block {
+  width: var(--w-liquid);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  &.c-block_2 {
+    & > * {
+      width: 48%;
+    }
+  } /*  END .c-block_2 */
+
+  &.c-block_3 {
+    & > * {
+      width: calc(100% / 3);
+    }
+  } /*  END &.c-block_3 */
+
+  &.c-block_4 {
+    & > * {
+      width: 25%;
+    }
+  } /*  END &.c-block_4 */
+
+  &.c-block_5 {
+    & > * {
+      width: 20%;
+    }
+  } /*  END &.c-block_5 */
+
+  &.c-block_6 {
+    & > * {
+      width: calc(100% / 6);
+    }
+  } /*  END &.c-block_6 */
+
+  &.c-block_7 {
+    & > * {
+      width: calc(100% / 7);
+    }
+  } /*  END &.c-block_7 */
+
+  &.c-block_8 {
+    & > * {
+      width: 12.5%;
+    }
+  } /*  END &.c-block_8 */
+} /*  END .c-block */
+
+/*		GLIDカード
+-----------------------------------------------------*/
+
+.c-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px 2%;
+  margin-left: auto;
+  margin-right: auto;
+
+  &_item {
+    display: grid;
+    grid-row: span 4;
+    gap: 0.65rem;
+    grid-template-rows: subgrid;
+    & > a {
+      display: inherit;
+      grid-template-rows: inherit;
+      grid-row: inherit;
+      gap: inherit;
+    }
+  }
+  &_image {
+    width: 100%;
+    text-align: center;
+  }
+  &_title {
+    font-size: 2.4rem;
+  }
+  &_title,
+  &_text {
+    margin-top: 20px;
+    text-align: justify;
+  }
+
+  &.c-card_2 {
+    grid-template-columns: repeat(auto-fit, minmax(435px, 1fr));
+
+    @include mq(sp) {
+      grid-template-columns: none;
+    }
+  }
+
+  &.c-card_3 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    @media (max-width: 500px) {
+      grid-template-columns: none;
+    }
+  }
+
+  &.c-card_4 {
+    grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+
+    @media (max-width: 400px) {
+      grid-template-columns: none;
+    }
+  }
+
+  &.c-card_5 {
+    grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+
+    @media (max-width: 300px) {
+      grid-template-columns: none;
+    }
+  }
+
+  &.c-card_6 {
+    grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+
+    @media (max-width: 200px) {
+      grid-template-columns: none;
+    }
+  }
+
+  &.c-card_7 {
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+
+    @media (max-width: 200px) {
+      grid-template-columns: none;
+    }
+  }
+
+  &.c-card_8 {
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+
+    @media (max-width: 150px) {
+      grid-template-columns: none;
+    }
+  }
+} /* END .c-card-grid */
+@include mq(sp) {
+  .c-card-grid {
+    &_title {
+      font-size: 2rem;
+    }
+    &_title,
+    &_text {
+      margin-top: 15px;
+    }
+  }
+} /*  END Break Point  */
+
+/*		FLEXカード
+-----------------------------------------------------*/
+
+.c-card-flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px 3%;
+
+  &.c-card_2 &_item {
+    width: calc(97% / 2);
+  } /* END c-card_2 */
+
+  &.c-card_3 &_item {
+    width: calc(94% / 3);
+    @include mq(sp) {
+      width: 100%;
+    }
+  } /* END c-card_3 */
+
+  &.c-card_4 &_item {
+    width: calc(91% / 4);
+    @include mq(sp) {
+      width: calc(97% / 2);
+    }
+  } /* END c-card_4 */
+
+  &.c-card_5 &_item {
+    width: calc(88% / 5);
+    @include mq(sp) {
+      width: 100%;
+    }
+  } /* END c-card_5 */
+
+  &.c-card_6 &_item {
+    width: calc(85% / 6);
+    @include mq(sp) {
+      width: calc(97% / 2);
+    }
+  } /* END c-card_6 */
+
+  &.c-card_7 &_item {
+    width: calc(82% / 7);
+    @include mq(sp) {
+      width: 100%;
+    }
+  } /* END c-card_7 */
+
+  &.c-card_8 &_item {
+    width: calc(79% / 8);
+    @include mq(sp) {
+      width: calc(97% / 2);
+    }
+  } /* END c-card_8 */
+
+  &_image {
+    width: 100%;
+    text-align: center;
+  }
+
+  &_title {
+    font-size: 2.4rem;
+  }
+
+  &_title,
+  &_text {
+    margin-top: 20px;
+    text-align: justify;
+  }
+} /* END .c-card_flex */
+
+@include mq(tb) {
+  .c-card-flex {
+    flex-direction: row;
+    &.c-card_2,
+    &.c-card_3,
+    &.c-card_4,
+    &.c-card_5,
+    &.c-card_6,
+    &.c-card_7,
+    &.c-card_8 {
+      .c-card-flex_item {
+        width: 45%;
+      }
+    }
+  }
+} /*  END Break Point  */
+
+@include mq(sp) {
+  .c-card-flex {
+    flex-direction: column;
+
+    &.c-card_2,
+    .c-card_3,
+    .c-card_4,
+    .c-card_5,
+    .c-card_6,
+    .c-card_7,
+    .c-card_8 {
+      .c-card-flex_item {
+        width: 100%;
+      }
+    }
+  }
+} /*  END Break Point  */
+

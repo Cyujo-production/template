@@ -1,0 +1,80 @@
+@use '../mixin/breakpoint' as *;
+
+//
+//====>> 404ページのプロジェクトスタイル <<====
+
+//・404ページ固有のスタイル
+//・このファイルはサイト(案件)独自のスタイルを記述するファイル
+//・接頭辞に「p-」を付けたセレクタにする事
+
+/*		404ページ
+-----------------------------------------------------*/
+.p-404 {
+  background: #f7f6f2; 
+  padding: 90px 0 60px; 
+  
+  .p-404-mv {
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .c-title_l {
+      text-align: center;
+      font-weight: bold;
+      & span {
+        font-size: 32px;
+        color: #99b521;
+      }
+      & h1 {
+        margin: 30px 0;
+        font-size: 32px;
+        color: #000000;
+      }
+    } // .c-title_l END
+  
+    & p {
+      text-align: center;
+      font-size: 16px;
+      line-height: 2;
+    }
+    .c-btn_wrap {
+      margin: 96px auto 0;
+    }
+  }
+}/*.p-404*/
+
+@include mq(sp) {
+  .p-404 {
+
+    .p-404-mv {
+
+      .c-title_l {
+        font-size: 20px;
+        & span {
+          font-size: 20px;
+        }
+        & h1 {
+          font-size: 18px;
+        }
+      }
+      
+      & p {
+        font-size: 14px;
+        .is_sp {
+          display: block;
+        }
+      }
+
+      .c-link_btn {
+        width: 100%;
+        & a {
+          font-size: 1.6rem;
+        }
+      }
+
+    }
+  }/*.p-404*/
+}/*max-width: 600px*/
+

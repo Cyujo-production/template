@@ -1,0 +1,365 @@
+@use '../mixin/breakpoint' as *;
+@use '../mixin/text' as *;
+
+//
+//====>> フォームコンポーネント <<====
+
+//・フォーム関連のスタイル
+//・入力フィールド、ボタン、チェックボックス、ラジオボタンなど
+
+//
+
+//		フォーム
+//-----------------------------------------------------*/
+.c-form {
+  margin: auto;
+  transform: unset;
+  &_row {
+    margin-bottom: 30px;
+  }
+  dt {
+    display: block;
+    margin-bottom: 12px;
+  }
+  dd {
+    display: block;
+    margin-bottom: 15px;
+    & + dt {
+      margin-top: 38px;
+    }
+  }
+  &_label {
+    display: block;
+    margin-bottom: 10px;
+    span {
+      display: inline-block;
+      color: #fff;
+      background-color: #c4c4c4;
+      background-color: var(--color-gray);
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px 8px;
+      margin-left: 8px;
+      &.is-required {
+        background-color: #f00;
+        background-color: var(--color-red);
+      }
+    }
+    & > select {
+      -webkit-appearance: none;
+      appearance: none;
+      min-width: 230px;
+      height: 2.8em;
+      padding: 8px;
+      border: 1px solid #c4c4c4;
+      background-color: #fff;
+      color: #2e2e2e;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  }
+
+  &_flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px 25px;
+    @include mq(tb) {
+      flex-direction: column;
+    }
+    & > * {
+      max-width: 100%;
+    }
+    &.is-wrap {
+      flex-wrap: wrap;
+    }
+    &.is-col-2 > * {
+      max-width: calc(50% - 20px);
+      @include mq(tb) {
+        max-width: 100%;
+      }
+    }
+    & + & {
+      margin-top: 15px;
+    }
+  }
+  select,
+  option,
+  textarea,
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="search"],
+  input[type="url"] {
+    width: 100%;
+    min-height: 50px;
+    padding: 15px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border: none;
+    border-radius: 6px;
+    outline: 0;
+  }
+
+  input[type="text"] {
+    min-width: 80px;
+    min-height: 50px;
+  }
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+  &_input_l {
+    width: 100%;
+  }
+  &_input_m {
+    width: max-content;
+    max-width: 400px;
+  }
+  &_input_s {
+    width: min-content;
+    max-width: 120px;
+  }
+  ::placeholder {
+    color: #aaa;
+  }
+  &_checkbox-item,
+  &_radio-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0 20px;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0 0.2em 0 0;
+  }
+  input[type="checkbox"]::before,
+  input[type="radio"]::before {
+    content: "";
+    position: absolute;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  input[type="checkbox"]::after,
+  input[type="radio"]::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  input[type="checkbox"]::before {
+    border: 1px solid #f6f5f3;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  }
+  input[type="checkbox"]:checked::after {
+    content: "✔";
+    font-size: 1.8rem;
+    line-height: 1em;
+    @include mq(tb) {
+      font-size: 12px;
+    }
+  }
+  input[type="radio"]::before {
+    border: 1px solid #d5d5d5;
+    border-radius: 50%;
+  }
+  input[type="radio"]:checked::after {
+    content: "";
+    background: #666;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border-radius: 50%;
+  }
+  .check_close {
+    display: none;
+  }
+  option:focus,
+  textarea:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="email"]:focus,
+  input[type="search"]:focus,
+  input[type="url"]:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px rgb(225, 236, 251) inset;
+  }
+  label:has(input[type="radio"]) {
+    display: inline-block;
+  }
+  label select {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  label:has(select) {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+  }
+  label:has(select)::after {
+    position: absolute;
+    right: 15px;
+    width: 10px;
+    height: 7px;
+    background-color: #535353;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: "";
+    pointer-events: none;
+  }
+  &_privacy {
+    max-width: 434px;
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    background-color: #f6f6f6;
+    padding: 18px 40px;
+    margin: 30px auto 40px;
+    .c-form_privacy_link {
+      text-decoration: underline;
+      @include hover {
+        text-decoration: none;
+      }
+    }
+    .c-form_privacy_consent label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  &_agreement {
+    background: #fff5f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: fit-content;
+    max-width: 80%;
+    font-size: 15px;
+    padding: 25px 45px;
+    margin: 45px auto;
+    & a {
+      color: var(--color-red);
+      text-decoration: underline;
+      @include hover {
+        text-decoration: none;
+        opacity: 0.7;
+      }
+    }
+  }
+  input[type="submit"],
+  input[type="button"],
+  button {
+    cursor: pointer;
+    outline: none;
+  }
+}
+
+/*フォームステップ*/
+.c-form_step {
+  position: relative;
+  width: 300px;
+  margin: 0 auto 61px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  &::before {
+    content: "";
+    width: 250px;
+    height: 1px;
+    background-color: var(--color-base);
+    position: absolute;
+    z-index: -1;
+    top: 31px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  &_item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--color-base);
+    font-size: 1.6rem;
+    &.is-active &_number span {
+      opacity: 1;
+      color: #fff;
+      background-color: var(--color-base);
+    }
+    &_title {
+      opacity: 0.5;
+      letter-spacing: 0.06em;
+    }
+    &.is-active &_title {
+      opacity: 1;
+    }
+    &_number {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #fff;
+      & span {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        opacity: 0.5;
+        border-radius: 50%;
+        border: 2px solid var(--color-base);
+        background-color: #fff;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+    }
+  }
+} /*.c-form_step*/
+

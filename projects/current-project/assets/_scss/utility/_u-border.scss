@@ -1,0 +1,32 @@
+/*
+====>> ボーダー調整用のユーティリティクラス <<====
+
+・ボーダー、角丸などの微調整用クラス
+
+*/
+
+/*		線
+-----------------------------------------------------*/
+
+.is-border_wrap{
+	padding: 10px;
+	box-sizing: border-box;
+	border: 1px solid currentColor;
+}
+
+.is-border{
+	box-sizing: border-box;
+	border: 1px solid currentColor;
+}
+
+/*		角丸
+-----------------------------------------------------*/
+
+.is-round{
+	border-radius: 16px;
+}
+
+.is-edge{
+	border-radius: 0;
+}
+

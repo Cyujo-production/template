@@ -1,0 +1,259 @@
+@use '../mixin/breakpoint' as *;
+@use '../mixin/text' as *;
+
+//
+//====>> ページャーコンポーネント <<====
+
+//・ページネーション（ページャー）のスタイル
+//・複数ページタイプ、前後ページナビゲーション、詳細ページ用など
+
+//
+
+//		ページャー
+//-----------------------------------------------------*/
+
+/* 複数ページタイプ */
+.c-pagination,
+.wp-pagenavi {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px 10px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  margin: 30px auto;
+  text-align: center;
+  @include mq(sp) {
+    .c-pagination,
+    .wp-pagenavi {
+      gap: 10px;
+    }
+  }
+  .c-pagination_prev,
+  .c-pagination_page,
+  .c-pagination_next,
+  .c-pagination_first,
+  .c-pagination_last,
+  .previouspostslink,
+  .prev,
+  .nextpostslink,
+  .next,
+  .page,
+  .page-numbers,
+  .is-current,
+  .current,
+  .first,
+  .last {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 10px 5px;
+    min-width: 50px;
+    min-height: 50px;
+    padding: 3px 5px;
+    border: 1px solid currentColor;
+    color: var(--color-base);
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    @include mq(sp) {
+      min-width: 38px;
+      min-height: 38px;
+    }
+    @include hover {
+      opacity: 0.7;
+      color: #fff;
+      background-color: var(--color-base);
+    }
+  }
+  .page-numbers.dots,
+  .extend {
+    border: none;
+    pointer-events: none;
+  }
+  .is-current,
+  .current {
+    color: #fff;
+    background-color: var(--color-base);
+    @include hover {
+      opacity: 1;
+    }
+  }
+  .previouspostslink,
+  .prev,
+  .nextpostslink,
+  .next {
+    position: relative;
+    overflow: hidden;
+    text-indent: -999%;
+  }
+  .previouspostslink::before,
+  .prev::before,
+  .nextpostslink::before,
+  .next::before {
+    content: "";
+    display: block;
+    width: 0.89em;
+    height: 0.89em;
+    border-top: solid 2px;
+    position: absolute;
+    transform-origin: center;
+    color: inherit;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  .previouspostslink::before,
+  .prev::before {
+    border-left: solid 2px;
+    top: 50%;
+    left: 37%;
+    transform: rotate(-45deg);
+    transform-origin: top left;
+  }
+  .nextpostslink::before,
+  .next::before {
+    border-right: solid 2px;
+    top: 50%;
+    right: 37%;
+    transform: rotate(45deg);
+    transform-origin: top right;
+  }
+
+  .c-pagination_first,
+  .c-pagination_last {
+    width: max-content;
+  }
+}
+/* 前後ページナビゲーション */
+.c-pagination_adjacent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  max-width: 540px;
+  margin: 0 auto;
+  margin-top: 60px;
+
+  .c-pagination_prev,
+  .c-pagination_next {
+    min-width: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  .c-pagination_prev {
+    justify-content: flex-start;
+  }
+  .c-pagination_next {
+    justify-content: flex-end;
+  }
+
+  .c-pagination_prev::before,
+  .c-pagination_next::after {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 14px;
+    // position: absolute;
+    // top: calc(50% - 2px);
+    border-top: solid 2px;
+    border-right: solid 2px;
+    transform-origin: center;
+    color: inherit;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  .c-pagination_prev::before {
+    position: relative;
+    left: 0;
+    transform: rotate(-135deg);
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  .c-pagination_next::after {
+    position: relative;
+    right: 0;
+    transform: rotate(45deg);
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  .c-pagination_back {
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    min-width: 80px;
+  }
+  .c-pagination_prev,
+  .c-pagination_next,
+  .c-pagination_back {
+    @include hover {
+      color: var(--color-base);
+    }
+  }
+  .c-pagination_prev {
+    @include hover {
+      &::before {
+        left: -5px;
+      }
+    }
+  }
+  .c-pagination_next {
+    @include hover {
+      &::after {
+        right: -5px;
+      }
+    }
+  }
+  .c-pagination_empty {
+    min-width: 100px;
+  }
+}
+
+/*		詳細
+--------------------------*/
+
+.c-pagination_single {
+  margin-top: 40px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .c-pagination_prev {
+    text-align: left;
+  }
+
+  .c-pagination_back {
+    text-align: center;
+  }
+
+  .c-pagination_next {
+    text-align: right;
+  }
+}
+

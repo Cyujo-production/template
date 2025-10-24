@@ -1,0 +1,78 @@
+@use '../mixin/breakpoint' as *;
+
+//
+//====>> メディアオブジェクトコンポーネント <<====
+
+//・ユニットコンテンツ、メディアオブジェクトのスタイル
+
+//
+
+//		ユニットコンテンツ
+//-----------------------------------------------------*/
+
+.c-unit {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px 4%;
+  @include mq(sp) {
+    flex-direction: column;
+  }
+  & > * {
+    flex: 1;
+  }
+  & + .c-unit {
+    margin-top: 30px;
+  }
+  &.is-reverse {
+    flex-direction: row-reverse;
+    @include mq(sp) {
+      flex-direction: column;
+    }
+  }
+} //c-unit
+
+.c-media {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px 3%;
+  @include mq(sp) {
+    flex-direction: column;
+  }
+  &.is-reverse {
+    flex-direction: row-reverse;
+    @include mq(sp) {
+      flex-direction: column;
+    }
+  }
+  &_image {
+    flex-shrink: 0;
+    @include mq(sp) {
+      width: 100%;
+    }
+  }
+  &_content {
+    flex: 1 1 400px;
+    @include mq(sp) {
+      flex: 1;
+      width: 100%;
+    }
+    &_title {
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+      @include mq(sp) {
+        font-size: 1.8rem;
+      }
+    }
+    &_text {
+      font-size: 1.6rem;
+      line-height: 1.75;
+      @include mq(sp) {
+        font-size: 1.4rem;
+      }
+    }
+  }
+} //c-media
+

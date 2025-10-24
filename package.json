@@ -1,0 +1,22 @@
+{
+  "name": "site-data-dev",
+  "version": "1.0.0",
+  "description": "Simple development environment with Gulp and PHP support",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build",
+    "compile": "gulp compileSass"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.1",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.80.0",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "browser-sync": "^3.0.0",
+    "http-server": "^14.1.1",
+    "php-server": "^1.0.0"
+  }
+}

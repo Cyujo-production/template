@@ -1,0 +1,23 @@
+//
+//====>> フォントファミリー変数の管理 <<====
+
+//・サイトで使用するフォントに関する変数を定義
+//・このファイルはベースのスタイルになるので、原則オーバーライド(上書き)はしない事
+
+//*/
+
+//	基本フォント設定
+//-----------------------------------------------------*/
+:root{
+    --base-sans-serif:'Hiragino Sans', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', sans-serif;
+    --base-serif:'游明朝', YuMincho, 'Hiragino Mincho ProN W3', 'ヒラギノ明朝 ProN W3', 'Hiragino Mincho ProN', 'HG明朝E', 'ＭＳ Ｐ明朝', 'ＭＳ 明朝', serif;
+}
+
+//		新規追加設定：フォント
+//-----------------------------------------------------*/
+// :root{
+//     --base-sans-serif: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', sans-serif;
+//     --mplus-font: MPLUSRounded-bold-subset, sans-serif;
+//     --Jaggy-clear: rotate(0.03deg); /* WEBフォントのシャギーを防ぐ指定 */
+// }
+

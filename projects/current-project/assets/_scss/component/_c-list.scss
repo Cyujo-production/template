@@ -1,0 +1,42 @@
+//
+//====>> リストコンポーネント <<====
+
+//・リスト表示のスタイル
+//・ドット、番号、ニュースリストなど
+
+//
+
+//		リスト
+//-----------------------------------------------------*/
+
+.c-list {
+  li {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+}
+ul.c-list_plain {
+  & > li {
+    position: relative;
+    padding-left: 2rem;
+    &::before {
+      content: "・";
+      position: absolute;
+      left: 0;
+      font-size: inherit;
+    }
+  }
+}
+
+ol.c-list_plain {
+  & > li {
+    counter-increment: mycounter;
+    &::before {
+      content: counter(mycounter, decimal-leading-zero) ".";
+      display: inline-block;
+      font-size: inherit;
+      margin-right: 0.3em;
+    }
+  }
+}
+

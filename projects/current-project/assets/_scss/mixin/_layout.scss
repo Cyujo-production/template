@@ -1,0 +1,38 @@
+//
+//====>> レイアウト関連のmixin <<====
+
+//・レイアウトに関する便利なmixinを定義
+//・中央配置やFlexbox、Gridのヘルパー関数など
+
+//
+
+// ======================================
+// レイアウト関連
+// ex）@include center(xy); 縦横中央に配置したいとき（親要素にposition: relative;を指定）
+// ======================================
+@mixin center($direction) {
+  position: absolute;
+  @if $direction==xy {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if $direction==x {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if $direction==y {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@mixin grid-center {
+  display: grid;
+  place-content: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

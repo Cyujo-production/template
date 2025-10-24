@@ -1,0 +1,353 @@
+@use '../mixin/breakpoint' as *;
+@use '../mixin/text' as *;
+
+//
+//====>> ヘッダーのレイアウトスタイル <<====
+
+//・サイトのヘッダー、グローバルナビゲーション、メニューボタンのスタイル
+//・このファイルはベースのスタイルに加え、サイト(案件)毎にスタイルを記述していく
+
+//
+
+//		ヘッダー
+//-----------------------------------------------------*/
+
+#header {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px 0 15px;
+
+  &.l-header {
+    width: var(--w-liquid);
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    .l-container,
+    .l-container_wide {
+      max-width: var(--w-solid-base);
+      display: flex;
+      align-items: center;
+    }
+
+    .l-header_logo {
+      font-size: 2.6rem;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-right: auto;
+      a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+    }
+    .l-header_btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px 3%;
+      & a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background-color: #000;
+        background-color: var(--color-base);
+        padding: 8px 30px;
+        border: 3px solid transparent;
+        border-radius: 100px;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        @include hover {
+          color: #000;
+          color: var(--color-base);
+          background-color: #fff;
+          border-color: currentColor;
+        }
+      }
+    }
+  } /* END &.l-header */
+} /* END #header */
+@include mq(pc) {
+  #header.l-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    .l-container,
+    .l-container_wide {
+      gap: 10px;
+      padding: 0 70px 0 10px;
+    }
+    .l-header_logo {
+      max-width: 150px;
+      flex-shrink: 0;
+      font-size: 5vw;
+      & * {
+        font-size: 3vw;
+      }
+    } /* END #header */
+  }
+}
+//		グローバルナビゲーション
+//-----------------------------------------------------*/
+#global-nav.l-nav {
+  overflow-y: auto;
+  gap: 30px;
+  .l-nav_logo {
+    display: none;
+    color: var(--color-black);
+  }
+  & ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 43px;
+
+    & li {
+      font-family: var(--mplus-font);
+      transform: var(--Jaggy-clear);
+      text-align: center;
+      color: var(--color-black);
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      font-weight: bold;
+      & span {
+        display: block;
+      }
+    }
+
+    & li a {
+      display: block;
+      color: var(--color-black);
+      line-height: 1.3;
+      @include hover {
+        color: var(--color-base);
+      }
+    }
+  } /* END & ul */
+  .l-nav_contact_tel {
+    display: none;
+    color: #fff;
+    margin-bottom: 15px;
+
+    & span {
+      display: block;
+      font-size: 4.4rem;
+      font-size: clamp(3rem, -0.266rem + 11.667vw, 4.4rem);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 25px;
+        width: clamp(16px, -7.333px + 8.333vw, 26px);
+        aspect-ratio: 100 / 138;
+        margin-right: 0.3em;
+        background-color: currentColor;
+        -webkit-mask-image: url("../img/common/icon_tel.svg");
+        mask-image: url("../img/common/icon_tel.svg");
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-size: 100% auto;
+        mask-size: 100% auto;
+      }
+    }
+    & small {
+      display: block;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      text-align: center;
+      padding-top: 7px;
+      margin-top: 15px;
+      border-top: 1px solid #fff;
+    }
+  }
+
+  .l-header_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #333;
+    background-color: var(--color-base);
+    border: 2px solid transparent;
+    border-radius: 100px;
+    transition: all 0.2s ease-in-out;
+    @include hover {
+      color: #333;
+      color: var(--color-base);
+      border-color: currentColor;
+      background-color: #fff;
+      &::after {
+        transform: translateY(3px);
+      }
+    }
+  }
+} /* END .l-nav */
+
+@include mq(pc) {
+  #global-nav.l-nav {
+    flex-flow: column nowrap;
+    position: absolute;
+    top: 60px;
+    left: 100%;
+    z-index: 900;
+    width: 100%;
+    width: 100%;
+    width: 100dvw;
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
+    padding: 20px 0 50px;
+    opacity: 0;
+    background-color: var(--color-blue);
+    transition: all 0.1s linear;
+    &.is-show {
+      left: 0;
+      opacity: 1;
+    }
+    &.is-flex {
+      flex-direction: column;
+      & ul {
+        width: 100%;
+        margin: auto;
+        flex-direction: column;
+        gap: 0;
+        & li {
+          text-align: left;
+          max-width: 600px;
+          width: 90%;
+          padding: 30px 0;
+          border-bottom: 1px solid #fff;
+        }
+        & li a {
+          position: relative;
+          color: #fff;
+          letter-spacing: 0.08em;
+          padding: 0 20px;
+          transition: all 0.2s linear;
+          &::after {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 16.5px;
+            position: absolute;
+            top: calc(50% - 8.25px);
+            right: 3%;
+            background: url(../img/common/global-nav_arrow.svg) no-repeat center center / 100% auto;
+            transition: all 0.2s linear;
+          }
+        }
+        & li a{
+          @include hover{
+            color: var(--color-gold);
+            &::after {
+              right: 2%;
+            }  
+          }
+        }
+        & li span {
+          display: inline-block;
+        }
+      }
+      .l-header_btn {
+        width: 100%;
+        max-width: 245px;
+        margin: 20px 0;
+        color: var(--color-black);
+        background-color: #fff;
+      }
+    }
+  }
+} /*  END Break Point  */
+
+//		メニューボタン
+//-----------------------------------------------------*/
+.l-header_toggle {
+  display: none;
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  text-align: center;
+  background-color: #333;
+  background-color: var(--color-base);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  padding: 10px 5px 5px;
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  & > span {
+    display: block;
+    position: relative;
+    width: 24px;
+    height: 2px;
+    padding: 0;
+    line-height: 1;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 100px;
+    transition: all 0.3s linear;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 24px;
+      height: 2px;
+      background-color: var(--color-pink);
+      border-radius: 100px;
+      transition: all 0.3s ease;
+      transform-origin: center center;
+    }
+    &::before {
+      transform: translate(-50%, -50%) translateY(-8px);
+    }
+    &::after {
+      transform: translate(-50%, -50%) translateY(8px);
+    }
+  }
+  & > p {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+  }
+  &.is-active {
+    & > span {
+      background-color: transparent;
+      &::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+}
+
+@include mq(pc) {
+  .l-header_toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+} /*  END Break Point  */
+

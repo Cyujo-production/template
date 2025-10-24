@@ -1,0 +1,132 @@
+@use '../mixin/breakpoint' as *;
+
+//
+//====>> サイトのレイアウトに関わるデフォルトスタイリング <<====
+
+//・このファイルはベースのスタイルになるので、原則オーバーライド(上書き)はしない事
+//・共通パーツの大まかレイアウトやサイトの幅に関するスタイルを格納
+
+//
+
+/*		コンテンツタイプと幅
+-----------------------------------------------------*/
+
+.l-wrapper {
+  width: 100%;
+  max-width: 100%;
+  max-width: 100vw;
+  max-width: 100dvw;
+  overflow: hidden;
+  // clip-path: inset(0px); /*position:stikyを使用する場合*/
+  // overflow-x: clip; /*position:stikyを使用する場合*/
+}
+
+.l-container_short {
+  width: var(--w-liquid);
+  max-width: var(--w-solid-short);
+  margin: 0 auto;
+  @include mq(sp, min) {
+    padding: 0 20px;
+  }
+}
+.l-container {
+  width: var(--w-liquid);
+  max-width: var(--w-solid-base);
+  margin: 0 auto;
+  @include mq(sp, min) {
+    padding: 0 20px;
+  }
+  & > .l-inner {
+    width: 100%;
+    max-width: var(--w-solid-short);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+.l-container_wide {
+  width: var(--w-liquid);
+  max-width: var(--w-solid-wide);
+  margin: auto;
+  @include mq(sp, min) {
+    padding: 0 20px;
+  }
+  & > .l-inner {
+    width: 100%;
+    max-width: var(--w-solid-short);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+
+@include mq(sp) {
+  .l-container_short {
+    padding: 0;
+  }
+  .l-container {
+    padding: 0;
+
+    & > .l-inner {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .l-container_wide {
+    padding: 0;
+    & > .l-inner {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+.l-container.l-2column {
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.l-container.l-2column .l-main {
+  width: 100%;
+  max-width: var(--w-2column-main);
+  margin: auto;
+}
+
+.l-container.l-2column .l-aside {
+  width: 100%;
+  max-width: var(--w-2column-aside);
+  margin: auto;
+}
+
+.l-container.l-3column {
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.l-container.l-3column .l-main {
+  width: 100%;
+  max-width: var(--w-3column-main);
+  margin: auto;
+}
+
+.l-container.l-3column .l-aside-right {
+  width: 100%;
+  max-width: var(--w-3column-right);
+  margin: auto;
+}
+
+.l-container.l-3column .l-aside-left {
+  width: 100%;
+  max-width: var(--w-3column-left);
+  margin: auto;
+}
+.l-inner {
+  max-width: var(--w-solid-wide);
+  margin: auto;
+}
+

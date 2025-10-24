@@ -1,0 +1,95 @@
+@use '../mixin/breakpoint' as *;
+@use '../mixin/text' as *;
+
+//		基本設定
+//-----------------------------------------------------*/
+*,*:before,*:after {
+  font-feature-settings: "palt";
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--base-sans-serif);
+  font-size: 1.6rem;
+  font-weight: normal;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-break: strict;
+  color: var(--color-black);
+  @include mq(sp){
+    font-size: 1.4rem;
+  }
+}
+//英語ページでは単語の途中で改行しない
+// html[lang="en"] body{
+//   word-break: break-word;
+//   overflow-wrap: break-word;
+// }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s linear;
+  &[target="_blank"].is-external::after {
+    content: "";
+    background: url("../img/common/icon_external.svg") no-repeat center center / contain;
+    display: inline-block;
+    height: 1.2rem;
+    width: 1.2rem;
+    vertical-align: middle;
+    margin-left: 0.3em;
+  }
+}
+@include mq(sp) {
+  .is-pc {
+    display: none !important;
+  }
+}
+@include mq(sp, min) {
+  .is-sp {
+    display: none !important;
+  }
+}
+@include mq(pc, min) {
+  .is-tb {
+    display: none !important;
+  }
+}
+input {
+  //iOSズームアップ対策サイズ
+  font-size: 1.6rem; 
+}
+textarea {
+  font-size: 1.6rem;
+  // 縦方向のリサイズを許可
+  resize: vertical; 
+}
+// フォーカスが当たった時の青枠を表示しない 
+*:focus {
+  outline: none;
+}
+::-moz-selection {
+  //ハイライトカラー指定
+  color: #fff;
+  background: cyan;
+  background: var(--color-base);
+}
+::selection {
+  //ハイライトカラー指定
+  color: #fff;
+  background: cyan;
+  background: var(--color-base);
+}
+@include mq(sp, min) {
+  a[href^="tel:"] {
+    pointer-events: none;
+  }
+}
+figure {
+  //safariのoverflow不具合対策
+  will-change: transform; 
+}
+

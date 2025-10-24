@@ -1,0 +1,43 @@
+@use '../mixin/breakpoint' as *;
+@use '../mixin/text' as *;
+
+//
+//====>> フッターのレイアウトスタイル <<====
+
+//・サイトのフッターのスタイル
+//・このファイルはベースのスタイルに加え、サイト(案件)毎にスタイルを記述していく
+
+//
+
+/*		フッター
+-----------------------------------------------------*/
+
+#footer {
+  text-align: center;
+  padding-top: 80px;
+  background: #fff;
+  .l-container {
+    width: var(--w-liquid);
+  }
+  .l-footer_logo {
+    margin-bottom: 20px;
+  }
+  .c-copyright {
+    .c-copyright__txt {
+      font-size: 1.4rem;
+      letter-spacing: 0.01em;
+    }
+  }
+} /*  END #footer  */
+
+@include mq(sp) {
+  #footer.l-footer {
+    padding: 20px 0;
+    .c-copyright {
+      .c-copyright__txt {
+        font-size: 1.4rem;
+      }
+    }
+  } /*  END #footer  */
+} /*  END Break Point  */
+

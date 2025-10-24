@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: https://ogp.me/ns#">
+<?php
+$path = './';  //追加（カレントディレクトリを表す ./ ）
+$title = '404 not found';
+$description = 'ページが見つかりませんでした。';
+$is_home = false; //トップページの判定用の変数 true false
+include_once($path . 'assets/inc/head.php');
+?>
+</head>
+<body>
+  <div class="l-wrapper">
+    <?php include_once($path . 'assets/inc/header.php'); ?>
+    <main>
+      <div class="p-404">
+        <section id="p-404-mv" class="p-404-mv">
+          <div class="l-container">
+            <div class="c-title_l">
+              <small>404 Not Found</small>
+              <h1>お探しのページが見つかりません</h1>
+            </div>
+            <p>
+              申し訳ございませんが、
+              <br class="is-sp">お探しのページは見つかりませんでした。
+              <br>ページが移動または削除されたか、
+              <br class="is-sp">URLの入力間違いの可能性があります。
+              <br>お手数ですがトップページへお戻りください。
+            </p>
+            <div class="c-btn_wrap">
+              <a class="c-link_btn" href="/">トップページに戻る</a>
+            </div>
+          </div>
+        </section><!--.p-404-mv-->
+      </div><!--.p-404-->
+    </main>
+    <?php include_once($path . '/assets/inc/footer.php'); ?>
+  </div><!--.l-wrapper-->
+</body>
+
+</html>

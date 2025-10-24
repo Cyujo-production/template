@@ -1,0 +1,86 @@
+@use '../mixin/text' as *;
+
+//
+//====>> ボタンコンポーネント <<====
+
+//・ボタンやリンクボタンのスタイル
+
+/*		ボタン
+-----------------------------------------------------*/
+.c-btn_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px 5%;
+  flex-wrap: wrap;
+}
+.c-link_btn {
+  position: relative;
+  color: #fff;
+  background: var(--color-black);
+  border: 2px solid var(--color-black);
+  padding: 10px 40px;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+  ::file-selector-button {
+    inline-size: fit-content;
+    touch-action: manipulation;
+    user-select: none;
+  }
+  &.is-arrow::after,
+  &.is-arrow_under::after {
+    content: "▶";
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    line-height: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  &.is-arrow_under::after {
+    transform: rotate(90deg);
+  }
+  @include hover {
+    background-color: #fff;
+    opacity: 1;
+    color: var(--color-black);
+    text-decoration: none;
+    &::after {
+      color: currentColor;
+    }
+  }
+  &.is-arrow {
+    @include hover {
+      &::after {
+        right: 4%;
+      }
+    }
+  }
+}
+
+.c-link_btn_arrow {
+  position: relative;
+  border: 1px solid var(--color-border-pale);
+  padding: 10px 40px;
+  display: inline-block;
+  color: var(--theme-main);
+
+  &:after {
+    content: "\02192";
+    position: absolute;
+    top: auto;
+    right: 5%;
+
+    @include hover {
+      right: -5%;
+    }
+  }
+
+  @include hover {
+    opacity: 1;
+    color: var(--theme-main);
+    text-decoration: none;
+  }
+}
+

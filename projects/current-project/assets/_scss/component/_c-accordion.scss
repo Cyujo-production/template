@@ -1,0 +1,83 @@
+//
+//====>> アコーディオンコンテンツコンポーネント <<====
+
+//・アコーディオンコンテンツのスタイル
+//・.scratch.jsに記述あり
+
+//
+
+//		アコーディオンコンテンツ
+//-----------------------------------------------------
+summary::-webkit-details-marker {
+  display: none;
+}
+details {
+  &::details-content {
+    content-visibility: unset;
+    display: block grid;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition-duration: 300ms;
+      transition-property: grid-template-rows;
+    }
+  }
+
+  &:not([open])::details-content {
+    grid-template-rows: 0fr;
+  }
+
+  &[open]::details-content {
+    grid-template-rows: 1fr;
+  }
+}
+.c-accordion {
+  list-style: none;
+  &_label {
+    position: relative;
+    cursor: pointer;
+    font-size: 2rem;
+    text-align: left;
+    padding: 20px 50px 20px 20px;
+    transition: all 0.5s ease;
+    list-style-type: none;
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      width: 15px;
+      height: 2px;
+      background-color: #333;
+      transition: all 0.2s linear;
+    }
+    &::before {
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%) rotate(0deg);
+    }
+    &::after {
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%) rotate(90deg);
+    }
+    //　is-openというクラスがついたら形状変化
+  }
+  &[open] {
+    .c-accordion_label {
+      &::before,
+      &::after {
+        transform: rotate(0);
+      }
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+  //アコーディオンで現れるエリア
+  &_box {
+    overflow: hidden;
+    .l-inner {
+      padding: 0 20px 20px;
+    }
+  }
+}
+

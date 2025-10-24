@@ -1,0 +1,45 @@
+@use '../mixin/breakpoint' as *;
+
+/*
+====>> 表示制御のユーティリティクラス <<====
+
+・表示・非表示、flexレイアウトなどの制御
+
+*/
+
+/*		ディスプレイ
+-----------------------------------------------------*/
+
+.is-flex{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+@include mq(sp) {
+	.is-flex{
+		flex-direction: column;
+	}
+}
+
+.is-hide{
+	display: none;
+}
+
+.is-show{
+	opacity:1;
+	visibility: visible;
+}
+
+/*		リバース
+-----------------------------------------------------*/
+
+.is-flipped_row{
+	flex-flow: row-reverse wrap;
+}
+
+.is-flipped_column{
+	flex-flow: column-reverse wrap;
+}
+

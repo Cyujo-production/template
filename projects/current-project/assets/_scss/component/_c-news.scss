@@ -1,0 +1,49 @@
+@use '../mixin/breakpoint' as *;
+@use '../mixin/text' as *;
+
+//
+//====>> ニュースリストコンポーネント <<====
+
+//・ニュース一覧の表示スタイル
+
+//
+
+.c-news_list {
+  & li {
+    display: flex;
+    border-bottom: dashed 1px #333;
+    & a {
+      width: 100%;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      @include hover {
+        color: blue;
+        color: var(--color-blue);
+        color: var(--color-base);
+      }
+    }
+    .c-news_cat {
+      min-width: 120px;
+      font-size: 1.2rem;
+      text-align: center;
+      border: 1px solid currentColor;
+      border-radius: 6px;
+    }
+  }
+}
+@include mq(sp) {
+  /*SP以下 表示*/
+  .c-news_list {
+    & li {
+      & a {
+        flex-wrap: wrap;
+        & p {
+          width: 100%;
+        }
+      }
+    }
+  }
+} /*END SP以下 表示*/
+

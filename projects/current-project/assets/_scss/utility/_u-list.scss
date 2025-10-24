@@ -1,0 +1,30 @@
+/*
+====>> リスト調整用のユーティリティクラス <<====
+
+・リストスタイルの微調整用クラス
+
+*/
+
+/*		リストスタイル
+-----------------------------------------------------*/
+
+.c-list.is-dotted{
+	padding: 20px ;
+	list-style-type: disc;
+	
+	li{
+		padding: 20px 20px 20px 0;
+	}
+	
+}
+
+.c-list.is-number{
+	padding: 20px;
+	list-style: decimal;
+	
+	li{
+		padding: 20px 20px 20px 0;
+	}
+	
+}
+

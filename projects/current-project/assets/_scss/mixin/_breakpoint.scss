@@ -1,0 +1,44 @@
+@use "sass:math";
+@use "sass:map";
+
+//
+//====>> ブレイクポイント管理 <<====
+
+//・レスポンシブデザインのブレイクポイントを管理
+//・Media Queryをmixinで簡単に使用できるようにする
+
+//
+
+// ======================================
+// ブレイクポイント
+// ======================================
+$mq-breakpoints: (
+  xl: 1536px,
+  lg: 1280px,
+  pc: 1024px,
+  tb: 834px,
+  sp: 768px,
+  xs: 414px
+) !default;
+
+// ======================================
+// ブレイクポイント
+// ex）@include mq(tb) or @include mq(pc, min)
+// ======================================
+// Media Queryの設定
+@mixin mq($breakpoint: md, $rule: max, $subtraction: false) {
+  $breakpoint: map.get($mq-breakpoints, $breakpoint);
+
+  @if $rule==max {
+    $breakpoint: $breakpoint - 1;
+  }
+
+  @if $rule==min and $subtraction {
+    $breakpoint: $breakpoint - .0625;
+  }
+
+  @media screen and (#{$rule}-width: $breakpoint) {
+    @content;
+  }
+}
+

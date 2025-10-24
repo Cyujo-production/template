@@ -1,0 +1,60 @@
+@use "sass:math";
+
+//
+//====>> テキスト関連のmixin <<====
+
+//・テキストに関する便利なmixinを定義
+//フォントサイズ、リンクカラー、クランプなど
+
+//
+
+// ======================================
+// テキスト関連
+// ======================================
+
+//クランプの出力
+//例：font-size: clampVw(12, 16, 20, 1920);
+//例：width: clampVw(250, 350, 450, 768);
+//2つ目の引数の値は入力された$sizeをビューポート幅に対応するvw単位に変換します
+@function clampVw($min, $size, $max, $vp: 1920) {
+  $min: $min * 0.1rem;
+  $max: $max * 0.1rem;
+  $num: (math.div(100 , $vp)) * 1vw;
+  $size_vw: $num * $size;
+  @return clamp($min, $size_vw, $max);
+}
+
+
+// :hover や :active、:focus 時に色を明るく変化させる
+// 例）a { @include link-color(#007acc);}
+@mixin link-color($color) {
+  color: $color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($color, 20%);
+  }
+}
+
+//リンクの下線の出し分け
+//a { @include text-link;}
+@mixin text-link {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+///ホバー可能なデバイス（マウスありなど）にだけスタイルを適用
+//button  { @include hover { background: black;} }
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+

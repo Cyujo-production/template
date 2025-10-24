@@ -1,0 +1,93 @@
+@use '../mixin/breakpoint' as *;
+
+//
+//====>> テーブルコンポーネント <<====
+
+//・テーブル表示のスタイル
+
+//
+
+//		テーブル
+//-----------------------------------------------------*/
+
+.c-table_plain {
+  width: 100%;
+  & th {
+    background: #efefef;
+    width: 20%;
+    padding: 20px;
+    border-bottom: solid 1px #ccc;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  & td {
+    padding: 20px 30px;
+    border-bottom: solid 1px #ccc;
+  }
+}
+
+@include mq(sp) {
+  .c-table_plain {
+    & thead,
+    & tbody,
+    & tfoot,
+    & tr {
+      display: block;
+      width: 100%;
+    }
+    & th,
+    & td {
+      width: 100%;
+      padding: 20px;
+      display: block;
+    }
+  }
+}
+
+.c-table_two_tone {
+  width: 100%;
+
+  th {
+    width: 30%;
+    padding: 20px;
+    border-bottom: solid 1px var(--color-border-pale);
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(2n) > th {
+    background: var(--color-base);
+    width: 30%;
+    padding: 20px;
+    border-bottom: solid 1px var(--color-border-pale);
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  td {
+    width: 70%;
+    padding: 20px 30px;
+    border-bottom: solid 1px var(--color-border-pale);
+  }
+
+  tr:nth-child(2n) > td {
+    background: var(--color-base);
+    width: 70%;
+    padding: 20px 30px;
+    border-bottom: solid 1px var(--color-border-pale);
+  }
+}
+
+@include mq(sp) {
+  .table_two_tone th,
+  table.two_tone td {
+    width: 100%;
+    padding: 20px 0px;
+    display: block;
+  }
+}
+

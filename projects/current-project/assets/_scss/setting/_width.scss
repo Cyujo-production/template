@@ -1,0 +1,37 @@
+//
+//====>> 幅に関する変数の管理 <<====
+
+//・サイトで使用する幅に関する変数を定義
+//・このファイルはベースのスタイルになるので、原則オーバーライド(上書き)はしない事
+
+//*/
+@use '../mixin/breakpoint' as *;
+
+/*		基本設定：幅
+-----------------------------------------------------*/
+:root{
+    --w-liquid: 100%;
+    --w-solid-base: 1100px;//1060px + padding40px
+    --w-solid-wide: 1280px;//1240px + padding40px
+    --w-solid-short: 980px;//940px + padding40px*
+    --w-2column-main: 700px;
+    --w-2column-aside: 290px;
+    --w-3column-main: 640px;
+    --w-3column-right: 150px;
+    --w-3column-left: 150px;
+}
+
+@include mq(sp) {
+    :root{
+        --w-liquid: 92%;
+        --w-solid-base: 92%;
+        --w-solid-wide: 92%;
+        --w-solid-short: 92%;
+        --w-2column-main: 92%;
+        --w-2column-aside: 92%;
+        --w-3column-main: 92%%;
+        --w-3column-right: 92%;
+        --w-3column-left: 92%;
+    }
+}/*  END Break Point  */
+

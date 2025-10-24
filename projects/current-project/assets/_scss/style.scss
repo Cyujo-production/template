@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+//
+//============================================================================================
+
+//  FLOCSS（フロックス）に基づいたCSS設計
+//  Foundation - Layout - Object（Component, Project, Utility）の順で読み込む
+//  ■ Foundation（土台）
+//  　└ リセットCSS、基本スタイル
+//  ■ Layout（配置）
+//  　└ ヘッダー、フッター、メインエリアなど大枠のレイアウト
+//  
+//  ■ Object（パーツ）
+//  　├ Component：再利用可能な小さなコンポーネント（ボタン、カードなど）
+//  　├ Project：プロジェクト固有のスタイル（ページ特有のスタイル）
+//  　└ Utility：調整用のヘルパークラス
+
+//============================================================================================
+//
+
+//  ============================================
+//    Setting（変数定義）
+//    ============================================ */
+@use 'setting/color';
+@use 'setting/font-family';
+@use 'setting/width';
+@use 'setting/z-index';
+
+//  ============================================
+//    Mixin（mixin定義）
+//    ============================================ */
+// ※ mixinはsettingの後に読み込む
+// ※ 他のファイルで @use で個別にインポートして使用
+
+//  ============================================
+//    Foundation（土台）
+//    ============================================ */
+@use 'foundation/base';
+
+//  ============================================
+//    Layout（レイアウト）
+//    ============================================ */
+@use 'layout/l-container';
+@use 'layout/l-header';
+@use 'layout/l-footer';
+@use 'layout/l-main';
+
+//  ============================================
+//    Component（コンポーネント）
+//    ============================================ */
+@use 'component/c-title';
+@use 'component/c-list';
+@use 'component/c-btn';
+@use 'component/c-news';
+@use 'component/c-table';
+@use 'component/c-breadcrumb';
+@use 'component/c-tab-panel';
+@use 'component/c-accordion';
+@use 'component/c-pagination';
+@use 'component/c-embed';
+@use 'component/c-dl';
+@use 'component/c-form';
+@use 'component/c-card';
+@use 'component/c-media';
+
+//  ============================================
+//    JavaScript（JavaScriptによって操作するもの）
+//    ============================================ */
+@use 'javascript/js-scroll';
+@use 'javascript/js-trigger';
+@use 'javascript/js-target';
+
+//  ============================================
+//    Project（プロジェクト固有）
+//    ============================================ */
+@use 'project/p-top';
+@use 'project/p-404';
+
+//  ============================================
+//    Utility（調整用ヘルパークラス）
+//    ============================================ */
+@use 'utility/u-margin';
+@use 'utility/u-display';
+@use 'utility/u-text';
+@use 'utility/u-border';
+@use 'utility/u-scroll';
+@use 'utility/u-list';
+
