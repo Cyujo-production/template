@@ -14,7 +14,7 @@
 .c-form {
   margin: auto;
   transform: unset;
-  &_row {
+  &__row {
     margin-bottom: 30px;
   }
   dt {
@@ -28,7 +28,7 @@
       margin-top: 38px;
     }
   }
-  &_label {
+  &__label {
     display: block;
     margin-bottom: 10px;
     span {
@@ -62,7 +62,7 @@
     }
   }
 
-  &_flex {
+  &__flex {
     display: flex;
     align-items: center;
     flex-wrap: wrap;

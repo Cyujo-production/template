@@ -40,7 +40,7 @@ window.addEventListener('load', setImgSizeAttributes);
 // スムーススクロール
 //----------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
-  const header = document.querySelector("header");
+  const header = document.querySelector(".l-header");
   let headerHeight = 0;
 
   if (header) {
@@ -67,46 +67,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//----------------------------------------
-// ヘッダー分paddingを設定
-//----------------------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  // ヘッダーの要素を取得
-  var header = document.querySelector("header");
-  // .p-main-visual の要素を取得
-  var content = document.querySelector("main"); // このセレクタは適宜変更してください
-  function updatePadding() {
-    var style = window.getComputedStyle(header);
-    // ヘッダーの position が fixed であるかチェック
-    if (style.position === "fixed" || style.position === "absolute") {
-      var headerHeight = header.offsetHeight; // ヘッダーの高さを取得
-      content.style.paddingTop = headerHeight + "px"; // ヘッダーの高さを padding-top に設定
-    } else {
-      content.style.paddingTop = "0px"; // ヘッダーが fixed でない場合は padding-top をリセット
-    }
-  }
-  // ページ読み込み時とウィンドウサイズ変更時に updatePadding 関数を呼び出す
-  window.onload = updatePadding;
-  window.onresize = updatePadding;
-});
 
 //----------------------------------------
 // グローバルメニュートグルボタン開閉処理
 //----------------------------------------
 //ドロワーメニュー制御
 document.addEventListener("DOMContentLoaded", function () {
-  const navToggle = document.querySelector("#js-nav-toggle");
-  const globalNav = document.querySelector("#global-nav");
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const globalNav = document.querySelector("[data-global-nav]");
   const body = document.body;
 
-  // #js-nav-toggleをクリックした際の処理
+  // data-nav-toggleをクリックした際の処理
   navToggle.addEventListener("click", function () {
     this.classList.toggle("is-active");
     globalNav.classList.toggle("is-show");
     body.classList.toggle("is-scroll_off");
   });
 
-  // #global-nav内のコンテンツをクリックした際の処理
+  // data-global-nav内のコンテンツをクリックした際の処理
   globalNav.addEventListener("click", function () {
     navToggle.classList.remove("is-active");
     this.classList.remove("is-show");
@@ -151,8 +129,8 @@ window.addEventListener('load', scroll_effect);
 //----------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
-  const headerHeight = document.querySelector('header').offsetHeight;
-  const navLinks = document.querySelectorAll('#global-nav a'); // ナビゲーションリンクを選択
+  const headerHeight = document.querySelector('.l-header').offsetHeight;
+  const navLinks = document.querySelectorAll('[data-global-nav] a'); // ナビゲーションリンクを選択
 
   function onScroll() {
       let found = false;
@@ -186,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
   accordions.forEach(accordion => {
     const summary = accordion.querySelector('summary');
     const details = accordion.querySelector('details');
-    const answer = accordion.querySelector('.c-accordion__answer');
+    const answer = accordion.querySelector('.c-accordion__box');
     
     if (!summary || !details || !answer) return;
     
@@ -206,31 +184,31 @@ document.addEventListener('DOMContentLoaded', function() {
       { height: height + 'px', opacity: 1 }
     ];
     
-summary.addEventListener("click", (event) => {
-  event.preventDefault();
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
 
       if (details.hasAttribute("open")) {
         details.removeAttribute("open");
 
-    const closingAnim = answer.animate(closingAnimation(answer), animTiming);
-    // アニメーション中は display: none を設定しない
-    closingAnim.onfinish = () => {
-      // アニメーション完了後に非表示化
-      answer.style.display = "none";
-      answer.style.height = "";
-      answer.style.opacity = "";
-    };
-  } else {
+        const closingAnim = answer.animate(closingAnimation(answer), animTiming);
+        // アニメーション中は display: none を設定しない
+        closingAnim.onfinish = () => {
+          // アニメーション完了後に非表示化
+          answer.style.display = "none";
+          answer.style.height = "";
+          answer.style.opacity = "";
+        };
+      } else {
         details.setAttribute("open", "true");
-    answer.style.display = "block";
+        answer.style.display = "block";
 
-    const height = answer.scrollHeight;
-    const openingAnim = answer.animate(openingAnimation(height), animTiming);
-    openingAnim.onfinish = () => {
-      answer.style.height = "";
-      answer.style.opacity = "";
-    };
-  }
+        const height = answer.scrollHeight;
+        const openingAnim = answer.animate(openingAnimation(height), animTiming);
+        openingAnim.onfinish = () => {
+          answer.style.height = "";
+          answer.style.opacity = "";
+        };
+      }
     });
   });
 });
@@ -240,8 +218,8 @@ summary.addEventListener("click", (event) => {
 //----------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   // タブの要素を取得
-  const tabs = document.querySelectorAll(".js-tab");
-  const panels = document.querySelectorAll(".c-tab-panel_panel");
+  const tabs = document.querySelectorAll(".c-tab-panel__tab");
+  const panels = document.querySelectorAll(".c-tab-panel__panel");
 
   if (tabs.length === 0 || panels.length === 0) return;
 
@@ -251,20 +229,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function tabSwitch() {
     // すでにアクティブなタブとコンテンツを取得
-    const activeTab = document.querySelector(".js-tab.is-active");
-    const activePanel = document.querySelector(".c-tab-panel_panel.is-active");
+    const activeTab = document.querySelector(".c-tab-panel__tab.is-active");
+    const activePanel = document.querySelector(".c-tab-panel__panel.is-active");
 
     // 既存のアクティブ状態を解除
-    if (activeTab) activeTab.classList.remove("is-active");
-    if (activePanel) activePanel.classList.remove("is-active");
+    if (activeTab) {
+      activeTab.classList.remove("is-active");
+      activeTab.setAttribute("aria-selected", "false");
+    }
+    if (activePanel) {
+      activePanel.classList.remove("is-active");
+    }
 
     // クリックしたタブをアクティブにする
     this.classList.add("is-active");
+    this.setAttribute("aria-selected", "true");
 
-    // タブのインデックスを取得し、対応するコンテンツをアクティブにする
-    const index = Array.from(tabs).indexOf(this);
-    if (panels[index]) {
-      panels[index].classList.add("is-active");
+    // data-tab属性を使用して対応するパネルを取得
+    const tabId = this.getAttribute("data-tab");
+    const targetPanel = document.querySelector(`[data-panel="${tabId}"]`);
+    
+    if (targetPanel) {
+      targetPanel.classList.add("is-active");
     }
   }
 });

@@ -1,10 +1,10 @@
 <?php
 /**
- * トップページ（新システム）
+ * トップページ
  */
 
 // アプリケーション初期化
-require_once __DIR__ . '/includes/core/init.php';
+require_once __DIR__ . '/../includes/core/init.php';
 
 // ページ情報の設定
 $title = 'ホーム';

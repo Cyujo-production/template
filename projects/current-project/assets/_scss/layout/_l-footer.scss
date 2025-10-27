@@ -12,14 +12,14 @@
 /*		フッター
 -----------------------------------------------------*/
 
-#footer {
+.l-footer {
   text-align: center;
   padding-top: 80px;
   background: #fff;
   .l-container {
     width: var(--w-liquid);
   }
-  .l-footer_logo {
+  .l-footer__logo {
     margin-bottom: 20px;
   }
   .c-copyright {
@@ -28,16 +28,16 @@
       letter-spacing: 0.01em;
     }
   }
-} /*  END #footer  */
+} /*  END .l-footer  */
 
 @include mq(sp) {
-  #footer.l-footer {
+  .l-footer {
     padding: 20px 0;
     .c-copyright {
       .c-copyright__txt {
         font-size: 1.4rem;
       }
     }
-  } /*  END #footer  */
+  } /*  END .l-footer  */
 } /*  END Break Point  */
 

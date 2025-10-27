@@ -1,41 +1,318 @@
+@use '../mixin/breakpoint' as *;
+
 //
 //====>> リストコンポーネント <<====
 
 //・リスト表示のスタイル
-//・ドット、番号、ニュースリストなど
+//・ドット、番号、ニュースリスト、定義リストなど
 
-//
-
-//		リスト
-//-----------------------------------------------------*/
+/*		基本リスト
+-----------------------------------------------------*/
 
 .c-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  
   li {
-    padding: 20px;
+    padding: 12px 0;
     box-sizing: border-box;
+    line-height: 1.6;
   }
-}
-ul.c-list_plain {
-  & > li {
-    position: relative;
-    padding-left: 2rem;
-    &::before {
-      content: "・";
-      position: absolute;
-      left: 0;
-      font-size: inherit;
+  
+  // プレーンスタイル（ドット付き）
+  &__plain {
+    li {
+      position: relative;
+      padding-left: 2rem;
+      
+      &::before {
+        content: "・";
+        position: absolute;
+        left: 0;
+        font-size: inherit;
+        color: var(--color-base);
+      }
+    }
+  }
+  
+  // 番号付きリスト
+  &__numbered {
+    counter-reset: list-counter;
+    
+    li {
+      counter-increment: list-counter;
+      position: relative;
+      padding-left: 2.5rem;
+      
+      &::before {
+        content: counter(list-counter) ".";
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        color: var(--color-base);
+        min-width: 2rem;
+      }
+    }
+  }
+  
+  // ゼロパディング番号付きリスト
+  &__numbered-zero {
+    counter-reset: list-counter;
+    
+    li {
+      counter-increment: list-counter;
+      position: relative;
+      padding-left: 2.5rem;
+      
+      &::before {
+        content: counter(list-counter, decimal-leading-zero) ".";
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        color: var(--color-base);
+        min-width: 2rem;
+      }
+    }
+  }
+  
+  // チェックマーク付きリスト
+  &__check {
+    li {
+      position: relative;
+      padding-left: 2.5rem;
+      
+      &::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--color-base);
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+    }
+  }
+  
+  // 矢印付きリスト
+  &__arrow {
+    li {
+      position: relative;
+      padding-left: 2rem;
+      
+      &::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--color-base);
+        font-weight: bold;
+      }
+    }
+  }
+  
+  // カード風リスト
+  &__card {
+    li {
+      background: var(--color-white);
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+      
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // インラインリスト
+  &__inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+    li {
+      padding: 8px 16px;
+      background: var(--color-white);
+      border: 1px solid #e0e0e0;
+      border-radius: 20px;
+      font-size: 1.4rem;
+      
+      &::before {
+        display: none;
+      }
+    }
+  }
+  
+  // 区切り線付きリスト
+  &__divided {
+    li {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 16px 0;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &::before {
+        display: none;
+      }
+    }
+  }
+  
+  // モバイル対応
+  @include mq(sp) {
+    li {
+      padding: 10px 0;
+    }
+    
+    &__card li {
+      padding: 16px;
+    }
+    
+    &__inline {
+      gap: 12px;
+      
+      li {
+        padding: 6px 12px;
+        font-size: 1.2rem;
+      }
     }
   }
 }
 
-ol.c-list_plain {
-  & > li {
-    counter-increment: mycounter;
+/*		定義リスト（dl dt dd）
+-----------------------------------------------------*/
+
+.c-definition-list {
+  margin: 0;
+  
+  dt {
+    font-weight: bold;
+    color: var(--color-black);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--color-base);
+  }
+  
+  dd {
+    margin: 0 0 20px 0;
+    padding-left: 16px;
+    line-height: 1.6;
+  }
+  
+  // 横並び定義リスト
+  &--horizontal {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 16px;
+    align-items: start;
+    
+    dt {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    
+    dd {
+      padding-left: 0;
+      margin-bottom: 16px;
+    }
+    
+    @include mq(sp) {
+      grid-template-columns: 1fr;
+      
+      dt {
+        border-bottom: 2px solid var(--color-base);
+        padding-bottom: 4px;
+        margin-bottom: 8px;
+      }
+      
+      dd {
+        padding-left: 16px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  
+  // カード風定義リスト
+  &--card {
+    dt {
+      background: var(--color-base);
+      color: var(--color-white);
+      padding: 12px 16px;
+      margin-bottom: 0;
+      border-radius: 8px 8px 0 0;
+      border-bottom: none;
+    }
+    
+    dd {
+      background: var(--color-white);
+      border: 1px solid #e0e0e0;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+/*		番号付きリスト（ol）
+-----------------------------------------------------*/
+
+.c-ordered-list {
+  counter-reset: ordered-counter;
+  margin: 0;
+  padding: 0;
+  
+  li {
+    counter-increment: ordered-counter;
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    
     &::before {
-      content: counter(mycounter, decimal-leading-zero) ".";
-      display: inline-block;
-      font-size: inherit;
-      margin-right: 0.3em;
+      content: counter(ordered-counter) ".";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      color: var(--color-base);
+      min-width: 2rem;
+    }
+  }
+  
+  // 括弧付き番号
+  &--parentheses {
+    li::before {
+      content: "(" counter(ordered-counter) ")";
+    }
+  }
+  
+  // 括弧付き番号（括弧のみ）
+  &--brackets {
+    li::before {
+      content: "[" counter(ordered-counter) "]";
+    }
+  }
+  
+  // ローマ数字
+  &--roman {
+    li::before {
+      content: counter(ordered-counter, lower-roman) ".";
+    }
+  }
+  
+  // アルファベット
+  &--alpha {
+    li::before {
+      content: counter(ordered-counter, lower-alpha) ".";
     }
   }
 }

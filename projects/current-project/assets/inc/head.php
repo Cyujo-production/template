@@ -8,8 +8,10 @@ $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERV
 $domain = $protocol . ($_SERVER['HTTP_HOST'] ?? 'localhost');
 $fullurl = $domain . $url;
 
-// projects/current-project/用のパス設定
-$path = './';
+// パス設定（URLベースで自動計算）
+// 現在のURLの深さに応じて相対パスを生成
+$path_depth = count(array_filter($urlpath)) - 1; // 空の要素を除外して深さを計算
+$path = str_repeat('../', max(0, $path_depth)); // 深さに応じて../を生成
 $root = '/';
 
 //サイト名の設定

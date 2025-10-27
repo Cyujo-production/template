@@ -1,4 +1,5 @@
 @use '../mixin/text' as *;
+@use '../mixin/breakpoint' as *;
 
 //
 //====>> ボタンコンポーネント <<====
@@ -7,26 +8,291 @@
 
 /*		ボタン
 -----------------------------------------------------*/
-.c-btn_wrap {
+
+// ベースボタンスタイル
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  white-space: nowrap;
+  
+  // フォーカスリセット
+  &:focus {
+    outline: none;
+  }
+  
+  // フォーカス可視化（キーボードナビゲーション時のみ）
+  &:focus-visible {
+    outline: 2px solid var(--color-base);
+    outline-offset: 2px;
+  }
+  
+  // 無効状態
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  // プライマリボタン
+  &--primary {
+    color: var(--color-white);
+    background-color: var(--color-base);
+    border-color: var(--color-base);
+    
+    @include hover {
+      background-color: var(--color-black);
+      border-color: var(--color-black);
+      color: var(--color-white);
+    }
+  }
+  
+  // セカンダリボタン
+  &--secondary {
+    color: var(--color-base);
+    background-color: var(--color-white);
+    border-color: var(--color-base);
+    
+    @include hover {
+      background-color: var(--color-base);
+      color: var(--color-white);
+    }
+  }
+  
+  // アウトラインボタン
+  &--outline {
+    color: var(--color-base);
+    background-color: transparent;
+    border-color: var(--color-base);
+    
+    @include hover {
+      background-color: var(--color-base);
+      color: var(--color-white);
+    }
+  }
+  
+  // ゴーストボタン
+  &--ghost {
+    color: var(--color-base);
+    background-color: transparent;
+    border-color: transparent;
+    
+    @include hover {
+      background-color: rgba(0, 105, 179, 0.1);
+      color: var(--color-base);
+    }
+  }
+  
+  // サイズバリエーション
+  &--small {
+    padding: 8px 16px;
+    font-size: 1.4rem;
+  }
+  
+  &--large {
+    padding: 16px 32px;
+    font-size: 1.8rem;
+  }
+  
+  // フルワイド
+  &--full {
+    width: 100%;
+  }
+  
+  // アイコン付きボタン
+  &--icon {
+    &::after {
+      content: "→";
+      transition: transform 0.3s ease;
+    }
+    
+    @include hover {
+      &::after {
+        transform: translateX(4px);
+      }
+    }
+  }
+  
+  // 個別padding調整用Modifier
+  &--compact {
+    padding: 8px 16px;
+    font-size: 1.4rem;
+  }
+  
+  &--spacious {
+    padding: 20px 40px;
+    font-size: 1.8rem;
+  }
+  
+  &--no-padding {
+    padding: 0;
+  }
+  
+  &--minimal {
+    padding: 6px 12px;
+    font-size: 1.2rem;
+  }
+  
+  &--generous {
+    padding: 24px 48px;
+    font-size: 2rem;
+  }
+  
+  // サイズ別Modifier
+  &--xs {
+    padding: 4px 8px;
+    font-size: 1.2rem;
+  }
+  
+  &--sm {
+    padding: 8px 16px;
+    font-size: 1.4rem;
+  }
+  
+  &--md {
+    padding: 12px 24px; // デフォルト
+    font-size: 1.6rem;
+  }
+  
+  &--lg {
+    padding: 16px 32px;
+    font-size: 1.8rem;
+  }
+  
+  &--xl {
+    padding: 20px 40px;
+    font-size: 2rem;
+  }
+  
+  // 用途別Modifier
+  &--icon-only {
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    
+    @include mq(sp) {
+      width: 44px;
+      height: 44px;
+    }
+  }
+  
+  &--text-only {
+    padding: 8px 0;
+    background: transparent;
+    border: none;
+    
+    &:hover {
+      background: transparent;
+      text-decoration: underline;
+    }
+  }
+  
+  &--square {
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    
+    @include mq(sp) {
+      width: 44px;
+      height: 44px;
+    }
+  }
+  
+  // モバイル対応
+  @include mq(sp) {
+    padding: 10px 20px;
+    font-size: 1.4rem;
+    
+    &--large {
+      padding: 14px 28px;
+      font-size: 1.6rem;
+    }
+  }
+}
+// ボタンラッパー
+.c-btn-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px 5%;
+  gap: 20px;
   flex-wrap: wrap;
+  
+  // 縦並び
+  &--vertical {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  // 左寄せ
+  &--left {
+    justify-content: flex-start;
+  }
+  
+  // 右寄せ
+  &--right {
+    justify-content: flex-end;
+  }
+  
+  // 間隔調整
+  &--tight {
+    gap: 10px;
+  }
+  
+  &--loose {
+    gap: 30px;
+  }
+  
+  // モバイル対応
+  @include mq(sp) {
+    gap: 15px;
+    
+    &--loose {
+      gap: 20px;
+    }
+  }
 }
+// レガシーリンクボタン（後方互換性のため保持）
 .c-link_btn {
   position: relative;
-  color: #fff;
+  color: var(--color-white);
   background: var(--color-black);
   border: 2px solid var(--color-black);
   padding: 10px 40px;
   display: inline-block;
   transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  
+  // フォーカスリセット
+  &:focus {
+    outline: none;
+  }
+  
+  // フォーカス可視化（キーボードナビゲーション時のみ）
+  &:focus-visible {
+    outline: 2px solid var(--color-base);
+    outline-offset: 2px;
+  }
+  
   ::file-selector-button {
     inline-size: fit-content;
     touch-action: manipulation;
     user-select: none;
   }
+  
   &.is-arrow::after,
   &.is-arrow_under::after {
     content: "▶";
@@ -38,11 +304,13 @@
     line-height: 0;
     transition: all 0.2s ease-in-out;
   }
+  
   &.is-arrow_under::after {
     transform: rotate(90deg);
   }
+  
   @include hover {
-    background-color: #fff;
+    background-color: var(--color-white);
     opacity: 1;
     color: var(--color-black);
     text-decoration: none;
@@ -50,6 +318,7 @@
       color: currentColor;
     }
   }
+  
   &.is-arrow {
     @include hover {
       &::after {
@@ -65,6 +334,17 @@
   padding: 10px 40px;
   display: inline-block;
   color: var(--theme-main);
+  
+  // フォーカスリセット
+  &:focus {
+    outline: none;
+  }
+  
+  // フォーカス可視化（キーボードナビゲーション時のみ）
+  &:focus-visible {
+    outline: 2px solid var(--color-base);
+    outline-offset: 2px;
+  }
 
   &:after {
     content: "\02192";

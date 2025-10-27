@@ -1,38 +1,286 @@
+@use '../mixin/breakpoint' as *;
+
 //
 //====>> タブ切り替えパネルコンポーネント <<====
 
 //・タブ切り替えパネルのスタイル
 
-//
+/*		タブ切り替えパネル
+-----------------------------------------------------*/
 
-//		タブ切り替えパネル
-//-----------------------------------------------------*/
 .c-tab-panel {
-  &_tabs {
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  
+  // タブナビゲーション
+  &__tabs {
     display: flex;
-    justify-content: center;
-    gap: 15px 3%;
-  }
-  &_tab {
-    cursor: pointer;
-    padding: 3px 5px;
-    &.is-active {
-      pointer-events: none;
-      border-bottom: 1px solid var(--color-black);
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    // レスポンシブ対応
+    @include mq(sp) {
+      flex-direction: column;
+      border-bottom: none;
     }
   }
-  &_panel {
-    pointer-events: none;
-    visibility: hidden;
+  
+  // タブボタン
+  &__tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 16px 24px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-gray);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    
+    // ホバー状態
+    &:hover:not(.is-active) {
+      background: rgba(0, 105, 179, 0.05);
+      color: var(--color-base);
+    }
+    
+    // アクティブ状態
+    &.is-active {
+      background: var(--color-white);
+      color: var(--color-base);
+      border-bottom: 3px solid var(--color-base);
+      box-shadow: none;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--color-white);
+      }
+    }
+    
+    // フォーカス状態
+    &:focus {
+      outline: none;
+    }
+    
+    // フォーカス可視性（キーボードナビゲーション用）
+    &:focus-visible {
+      outline: 2px solid var(--color-base);
+      outline-offset: -2px;
+    }
+    
+    // 無効状態
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    
+    // モバイル対応
+    @include mq(sp) {
+      padding: 12px 16px;
+      font-size: 1.4rem;
+      border-bottom: 1px solid #e0e0e0;
+      
+      &.is-active {
+        border-bottom: 1px solid #e0e0e0;
+        border-left: 3px solid var(--color-base);
+        
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  // タブパネル
+  &__panel {
+    padding: 32px;
     opacity: 0;
+    visibility: hidden;
     max-height: 0;
     overflow: hidden;
-    transition: opacity 0.2s ease;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    
+    // アクティブ状態
     &.is-active {
-      pointer-events: all;
-      max-height: 100%;
-      visibility: visible;
       opacity: 1;
+      visibility: visible;
+      max-height: none;
+      pointer-events: all;
+      padding: 32px;
+    }
+    
+    // モバイル対応
+    @include mq(sp) {
+      padding: 20px;
+      
+      &.is-active {
+        padding: 20px;
+      }
+    }
+  }
+  
+  // バリエーション
+  &--minimal {
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+    
+    .c-tab-panel__tabs {
+      background: var(--color-white);
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .c-tab-panel__tab {
+      &.is-active {
+        background: #f8f9fa;
+        border-bottom: 2px solid var(--color-base);
+      }
+    }
+  }
+  
+  &--pills {
+    .c-tab-panel__tabs {
+      background: var(--color-white);
+      border-bottom: none;
+      padding: 8px;
+      gap: 8px;
+    }
+    
+    .c-tab-panel__tab {
+      border-radius: 8px;
+      margin: 0;
+      
+      &.is-active {
+        background: var(--color-base);
+        color: var(--color-white);
+        border-bottom: none;
+        
+        &::after {
+          display: none;
+        }
+      }
+      
+      &:hover {
+        background: rgba(0, 105, 179, 0.1);
+      }
+    }
+  }
+  
+  &--underline {
+    box-shadow: none;
+    border: none;
+    
+    .c-tab-panel__tabs {
+      background: var(--color-white);
+      border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .c-tab-panel__tab {
+      border-radius: 0;
+      
+      &.is-active {
+        background: transparent;
+        border-bottom: 3px solid var(--color-base);
+        
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  // サイズバリエーション
+  &--small {
+    .c-tab-panel__tab {
+      padding: 12px 20px;
+      font-size: 1.4rem;
+    }
+    
+    .c-tab-panel__panel {
+      padding: 24px;
+      
+      &.is-active {
+        padding: 24px;
+      }
+    }
+  }
+  
+  &--large {
+    .c-tab-panel__tab {
+      padding: 20px 32px;
+      font-size: 1.8rem;
+    }
+    
+    .c-tab-panel__panel {
+      padding: 40px;
+      
+      &.is-active {
+        padding: 40px;
+      }
+    }
+  }
+  
+  // 縦タブ
+  &--vertical {
+    display: flex;
+    
+    .c-tab-panel__tabs {
+      flex-direction: column;
+      width: 200px;
+      border-bottom: none;
+      border-right: 1px solid #e0e0e0;
+      
+      @include mq(sp) {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+      }
+    }
+    
+    .c-tab-panel__tab {
+      text-align: left;
+      border-bottom: none;
+      
+      &.is-active {
+        border-bottom: none;
+        border-right: 3px solid var(--color-base);
+        
+        &::after {
+          display: none;
+        }
+      }
+    }
+    
+    .c-tab-panel__panel {
+      flex: 1;
+    }
+    
+    @include mq(sp) {
+      flex-direction: column;
+      
+      .c-tab-panel__tabs {
+        width: 100%;
+      }
+      
+      .c-tab-panel__tab {
+        &.is-active {
+          border-right: none;
+          border-bottom: 3px solid var(--color-base);
+        }
+      }
     }
   }
 }

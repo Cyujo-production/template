@@ -32,7 +32,7 @@ details {
 }
 .c-accordion {
   list-style: none;
-  &_label {
+  &__label {
     position: relative;
     cursor: pointer;
     font-size: 2rem;
@@ -62,7 +62,7 @@ details {
     //　is-openというクラスがついたら形状変化
   }
   &[open] {
-    .c-accordion_label {
+    .c-accordion__label {
       &::before,
       &::after {
         transform: rotate(0);
@@ -73,11 +73,10 @@ details {
     }
   }
   //アコーディオンで現れるエリア
-  &_box {
+  &__box {
     overflow: hidden;
     .l-inner {
       padding: 0 20px 20px;
     }
   }
 }
-

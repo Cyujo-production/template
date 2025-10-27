@@ -71,7 +71,7 @@
   margin-left: auto;
   margin-right: auto;
 
-  &_item {
+  &__item {
     display: grid;
     grid-row: span 4;
     gap: 0.65rem;
@@ -83,15 +83,15 @@
       gap: inherit;
     }
   }
-  &_image {
+  &__image {
     width: 100%;
     text-align: center;
   }
-  &_title {
+  &__title {
     font-size: 2.4rem;
   }
-  &_title,
-  &_text {
+  &__title,
+  &__text {
     margin-top: 20px;
     text-align: justify;
   }
@@ -154,11 +154,11 @@
 } /* END .c-card-grid */
 @include mq(sp) {
   .c-card-grid {
-    &_title {
+    &__title {
       font-size: 2rem;
     }
-    &_title,
-    &_text {
+    &__title,
+    &__text {
       margin-top: 15px;
     }
   }
@@ -174,63 +174,63 @@
   align-items: center;
   gap: 30px 3%;
 
-  &.c-card_2 &_item {
+  &.c-card_2 &__item {
     width: calc(97% / 2);
   } /* END c-card_2 */
 
-  &.c-card_3 &_item {
+  &.c-card_3 &__item {
     width: calc(94% / 3);
     @include mq(sp) {
       width: 100%;
     }
   } /* END c-card_3 */
 
-  &.c-card_4 &_item {
+  &.c-card_4 &__item {
     width: calc(91% / 4);
     @include mq(sp) {
       width: calc(97% / 2);
     }
   } /* END c-card_4 */
 
-  &.c-card_5 &_item {
+  &.c-card_5 &__item {
     width: calc(88% / 5);
     @include mq(sp) {
       width: 100%;
     }
   } /* END c-card_5 */
 
-  &.c-card_6 &_item {
+  &.c-card_6 &__item {
     width: calc(85% / 6);
     @include mq(sp) {
       width: calc(97% / 2);
     }
   } /* END c-card_6 */
 
-  &.c-card_7 &_item {
+  &.c-card_7 &__item {
     width: calc(82% / 7);
     @include mq(sp) {
       width: 100%;
     }
   } /* END c-card_7 */
 
-  &.c-card_8 &_item {
+  &.c-card_8 &__item {
     width: calc(79% / 8);
     @include mq(sp) {
       width: calc(97% / 2);
     }
   } /* END c-card_8 */
 
-  &_image {
+  &__image {
     width: 100%;
     text-align: center;
   }
 
-  &_title {
+  &__title {
     font-size: 2.4rem;
   }
 
-  &_title,
-  &_text {
+  &__title,
+  &__text {
     margin-top: 20px;
     text-align: justify;
   }
@@ -246,7 +246,7 @@
     &.c-card_6,
     &.c-card_7,
     &.c-card_8 {
-      .c-card-flex_item {
+      .c-card-flex__item {
         width: 45%;
       }
     }
@@ -264,7 +264,7 @@
     .c-card_6,
     .c-card_7,
     .c-card_8 {
-      .c-card-flex_item {
+      .c-card-flex__item {
         width: 100%;
       }
     }

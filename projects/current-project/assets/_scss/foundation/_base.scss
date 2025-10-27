@@ -7,7 +7,26 @@
   font-feature-settings: "palt";
 }
 html {
+  font-size: 65%;
   scroll-behavior: smooth;
+}
+
+// スキップリンク
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+  
+  &:focus {
+    top: 6px;
+  }
 }
 body {
   font-family: var(--base-sans-serif);

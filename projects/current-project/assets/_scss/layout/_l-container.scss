@@ -21,7 +21,7 @@
   // overflow-x: clip; /*position:stikyを使用する場合*/
 }
 
-.l-container_short {
+.l-container__short {
   width: var(--w-liquid);
   max-width: var(--w-solid-short);
   margin: 0 auto;
@@ -43,7 +43,7 @@
     padding: 0 20px;
   }
 }
-.l-container_wide {
+.l-container__wide {
   width: var(--w-liquid);
   max-width: var(--w-solid-wide);
   margin: auto;
@@ -59,7 +59,7 @@
 }
 
 @include mq(sp) {
-  .l-container_short {
+  .l-container__short {
     padding: 0;
   }
   .l-container {
@@ -71,7 +71,7 @@
       padding: 0;
     }
   }
-  .l-container_wide {
+  .l-container__wide {
     padding: 0;
     & > .l-inner {
       width: 100%;

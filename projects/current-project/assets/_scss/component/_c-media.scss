@@ -47,26 +47,26 @@
       flex-direction: column;
     }
   }
-  &_image {
+  &__image {
     flex-shrink: 0;
     @include mq(sp) {
       width: 100%;
     }
   }
-  &_content {
+  &__content {
     flex: 1 1 400px;
     @include mq(sp) {
       flex: 1;
       width: 100%;
     }
-    &_title {
+    &__title {
       font-size: 2.4rem;
       margin-bottom: 15px;
       @include mq(sp) {
         font-size: 1.8rem;
       }
     }
-    &_text {
+    &__text {
       font-size: 1.6rem;
       line-height: 1.75;
       @include mq(sp) {

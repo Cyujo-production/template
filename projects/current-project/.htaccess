@@ -1,0 +1,38 @@
+RewriteEngine On
+
+# index.php を隠す
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ $1/index.php [L]
+
+# index.html を隠す
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ $1/index.html [L]
+
+# ルートディレクトリの index.php を隠す
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ index.php [L]
+
+# 拡張子なしでPHPファイルにアクセス
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)\.php$ $1 [R=301,L]
+
+# 拡張子なしでHTMLファイルにアクセス
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)\.html$ $1 [R=301,L]
+
+# セキュリティ: 隠しファイルへのアクセスを拒否
+<Files ".*">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# セキュリティ: 設定ファイルへのアクセスを拒否
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
