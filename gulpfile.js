@@ -13,7 +13,6 @@ import imageminPngquant from 'imagemin-pngquant';
 import imageminSvgo from 'imagemin-svgo';
 import { spawn } from 'child_process';
 import fs from 'fs';
-import replace from 'gulp-replace';
 
 // Sass設定（将来対応の準備）
 const sassCompiler = gulpSass(sass);
@@ -42,41 +41,6 @@ const paths = {
 
 console.log(`🚀 プロジェクト: ${projectName} でGulpを起動します`);
 
-// HTMLテンプレート処理タスク
-function processHtmlTemplates() {
-  return src(`projects/${projectName}/**/*.html`)
-    .pipe(replace(/<!-- HEAD_INCLUDE -->/g, () => {
-      try {
-        return fs.readFileSync(`projects/${projectName}/includes/layout/head.html`, 'utf8');
-      } catch (err) {
-        console.warn('head.html not found, skipping...');
-        return '';
-      }
-    }))
-    .pipe(replace(/<!-- HEADER_INCLUDE -->/g, () => {
-      try {
-        return fs.readFileSync(`projects/${projectName}/includes/layout/header.html`, 'utf8');
-      } catch (err) {
-        console.warn('header.html not found, skipping...');
-        return '';
-      }
-    }))
-    .pipe(replace(/<!-- FOOTER_INCLUDE -->/g, () => {
-      try {
-        return fs.readFileSync(`projects/${projectName}/includes/layout/footer.html`, 'utf8');
-      } catch (err) {
-        console.warn('footer.html not found, skipping...');
-        return '';
-      }
-    }))
-    .pipe(replace(/{{basePath}}/g, (match, offset, string) => {
-      // ファイルの深さに応じて相対パスを計算
-      const filePath = string.substring(0, offset);
-      const depth = (filePath.match(/\//g) || []).length - 1;
-      return depth > 0 ? '../'.repeat(depth) : './';
-    }))
-    .pipe(dest(`projects/${projectName}/`));
-}
 
 // SCSSコンパイルタスク
 function compileSass() {
@@ -218,10 +182,6 @@ function browserSyncTask() {
 
 // ファイル監視タスク
 function watchFiles() {
-  // HTMLテンプレート監視
-  watch(`projects/${projectName}/includes/**/*.html`, processHtmlTemplates);
-  watch(`projects/${projectName}/templates/**/*.html`, processHtmlTemplates);
-  
   // SCSS監視
   watch(paths.scss.src, compileSass);
   
@@ -240,7 +200,7 @@ function watchFiles() {
 }
 
 // 開発用タスク
-const dev = series(processHtmlTemplates, compileSass, parallel(browserSyncTask, watchFiles));
+const dev = series(compileSass, parallel(browserSyncTask, watchFiles));
 
 // 本番用ビルドタスク
 const build = series(compileSass, minifyCSS, optimizeImages);
